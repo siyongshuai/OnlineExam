@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation=" 
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- 自动扫描,注入为bean -->
+	<!-- 只有service层和controller层需要注入,可以根据需要进行扫描，也可以直接扫描根包 -->
+	<context:component-scan base-package="haue.edu.cn.service.impl"></context:component-scan>
+	<context:component-scan base-package="haue.edu.cn.controller"></context:component-scan>
+	<!-- 读取@Transactional -->
+
+	<context:annotation-config />
+	<!-- 启动注解驱动的Spring MVC，注册请求url和注解POJO类方法的映射 -->
+	<mvc:annotation-driven />
+	
+
+
+	<!--配置拦截器, 多个拦截器,顺序执行 -->
+
+
+	<!--JSP视图解析器 -->
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/" />
+		<!-- <property name="suffix" value=".jsp" /> -->
+		<!-- <property name="order" value="1"/> -->
+	</bean>
+
+</beans>
