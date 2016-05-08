@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="haue.edu.cn.dao.PaperMapper" >
+  <resultMap id="BaseResultMap" type="haue.edu.cn.model.Paper" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="paper_name" property="paperName" jdbcType="VARCHAR" />
+    <result column="adminid" property="adminid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="VARCHAR" />
+    <result column="paper_minute" property="paperMinute" jdbcType="INTEGER" />
+    <result column="total_score" property="totalScore" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="qorder" property="qorder" jdbcType="VARCHAR" />
+    <result column="postdate" property="postdate" jdbcType="TIMESTAMP" />
+    <result column="show_score" property="showScore" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, paper_name, adminid, status, starttime, endtime, paper_minute, total_score, remark, 
+    qorder, postdate, show_score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_paper
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from oe_paper
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="haue.edu.cn.model.Paper" >
+    insert into oe_paper (id, paper_name, adminid, 
+      status, starttime, endtime, 
+      paper_minute, total_score, remark, 
+      qorder, postdate, show_score
+      )
+    values (#{id,jdbcType=INTEGER}, #{paperName,jdbcType=VARCHAR}, #{adminid,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, 
+      #{paperMinute,jdbcType=INTEGER}, #{totalScore,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{qorder,jdbcType=VARCHAR}, #{postdate,jdbcType=TIMESTAMP}, #{showScore,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="haue.edu.cn.model.Paper" >
+    insert into oe_paper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="paperName != null" >
+        paper_name,
+      </if>
+      <if test="adminid != null" >
+        adminid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="paperMinute != null" >
+        paper_minute,
+      </if>
+      <if test="totalScore != null" >
+        total_score,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="qorder != null" >
+        qorder,
+      </if>
+      <if test="postdate != null" >
+        postdate,
+      </if>
+      <if test="showScore != null" >
+        show_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paperName != null" >
+        #{paperName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="paperMinute != null" >
+        #{paperMinute,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="qorder != null" >
+        #{qorder,jdbcType=VARCHAR},
+      </if>
+      <if test="postdate != null" >
+        #{postdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showScore != null" >
+        #{showScore,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.Paper" >
+    update oe_paper
+    <set >
+      <if test="paperName != null" >
+        paper_name = #{paperName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminid != null" >
+        adminid = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="paperMinute != null" >
+        paper_minute = #{paperMinute,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null" >
+        total_score = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="qorder != null" >
+        qorder = #{qorder,jdbcType=VARCHAR},
+      </if>
+      <if test="postdate != null" >
+        postdate = #{postdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showScore != null" >
+        show_score = #{showScore,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="haue.edu.cn.model.Paper" >
+    update oe_paper
+    set paper_name = #{paperName,jdbcType=VARCHAR},
+      adminid = #{adminid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=VARCHAR},
+      paper_minute = #{paperMinute,jdbcType=INTEGER},
+      total_score = #{totalScore,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      qorder = #{qorder,jdbcType=VARCHAR},
+      postdate = #{postdate,jdbcType=TIMESTAMP},
+      show_score = #{showScore,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

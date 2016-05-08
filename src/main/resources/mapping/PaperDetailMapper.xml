@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="haue.edu.cn.dao.PaperDetailMapper" >
+  <resultMap id="BaseResultMap" type="haue.edu.cn.model.PaperDetail" >
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="qid" property="qid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="haue.edu.cn.model.PaperDetail" >
+    insert into oe_paper_detail (pid, qid, cid, 
+      score, orderid)
+    values (#{pid,jdbcType=INTEGER}, #{qid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="haue.edu.cn.model.PaperDetail" >
+    insert into oe_paper_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="qid != null" >
+        qid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="orderid != null" >
+        orderid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="qid != null" >
+        #{qid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
