@@ -1,0 +1,3 @@
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/js/locale/easyui-lang-zh_CN.js"></script>

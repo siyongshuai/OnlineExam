@@ -1,0 +1,4 @@
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/js/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/js/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/js/themes/color.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/style.css" />
