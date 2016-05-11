@@ -36,8 +36,8 @@
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/" />
-		<!-- <property name="suffix" value=".jsp" /> -->
-		<!-- <property name="order" value="1"/> -->
+		 <property name="suffix" value=".jsp" /> 
+		 <property name="order" value="1"/> 
 	</bean>
 
 </beans>

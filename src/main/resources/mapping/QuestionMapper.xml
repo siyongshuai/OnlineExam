@@ -21,7 +21,7 @@
     <result column="keydesc" property="keydesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, dbid, qtype, qlevel, qfrom, status, optionA, optionB, optionC, optionD, postdate, 
+    id, dbid, qtype, qlevel, qfrom, status, optionA, optionB, optionC, optionD,postdate,  
     adminid
   </sql>
   <sql id="Blob_Column_List" >
@@ -34,6 +34,13 @@
     <include refid="Blob_Column_List" />
     from oe_question
     where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="ResultMapWithBLOBs"  >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from oe_question
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from oe_question

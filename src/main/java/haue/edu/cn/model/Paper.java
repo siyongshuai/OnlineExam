@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Paper {
     private Integer id;
@@ -23,9 +23,18 @@ public class Paper {
 
     private String qorder;
 
-    private Date postdate;
+    private Timestamp postdate;
 
     private String showScore;
+    
+    public Timestamp getPostdate() {
+ 		return postdate;
+ 	}
+
+ 	public void setPostdate(Timestamp postdate) {
+ 		this.postdate = postdate;
+ 	}
+
 
     public Integer getId() {
         return id;
@@ -107,15 +116,10 @@ public class Paper {
         this.qorder = qorder == null ? null : qorder.trim();
     }
 
-    public Date getPostdate() {
-        return postdate;
-    }
 
-    public void setPostdate(Date postdate) {
-        this.postdate = postdate;
-    }
 
-    public String getShowScore() {
+ 
+	public String getShowScore() {
         return showScore;
     }
 

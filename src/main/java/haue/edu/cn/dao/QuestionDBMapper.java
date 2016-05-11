@@ -1,20 +1,21 @@
 package haue.edu.cn.dao;
 
+import java.util.List;
+
 import haue.edu.cn.model.QuestionDB;
-import haue.edu.cn.model.QuestionDBWithBLOBs;
 
 public interface QuestionDBMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(QuestionDBWithBLOBs record);
+    int insert(QuestionDB record);
 
-    int insertSelective(QuestionDBWithBLOBs record);
+    int insertSelective(QuestionDB record);
 
-    QuestionDBWithBLOBs selectByPrimaryKey(Integer id);
+    QuestionDB selectByPrimaryKey(Integer id);
+    
+    List<QuestionDB> selectAll();
 
-    int updateByPrimaryKeySelective(QuestionDBWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(QuestionDBWithBLOBs record);
+    int updateByPrimaryKeySelective(QuestionDB record);
 
     int updateByPrimaryKey(QuestionDB record);
 }

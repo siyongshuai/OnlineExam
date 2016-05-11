@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Student {
     private Integer id;
@@ -15,7 +15,7 @@ public class Student {
 
     private String status;
 
-    private Date regdate;
+    private Timestamp regdate;
 
     private String realname;
 
@@ -29,9 +29,28 @@ public class Student {
 
     private Integer logintimes;
 
-    private Date lastlogin;
+    private Timestamp lastlogin;
+    
+    
+    
 
-    public Integer getId() {
+    public Timestamp getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
+	}
+
+	public Timestamp getLastlogin() {
+		return lastlogin;
+	}
+
+	public void setLastlogin(Timestamp lastlogin) {
+		this.lastlogin = lastlogin;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -79,13 +98,7 @@ public class Student {
         this.status = status == null ? null : status.trim();
     }
 
-    public Date getRegdate() {
-        return regdate;
-    }
-
-    public void setRegdate(Date regdate) {
-        this.regdate = regdate;
-    }
+ 
 
     public String getRealname() {
         return realname;
@@ -135,11 +148,5 @@ public class Student {
         this.logintimes = logintimes;
     }
 
-    public Date getLastlogin() {
-        return lastlogin;
-    }
-
-    public void setLastlogin(Date lastlogin) {
-        this.lastlogin = lastlogin;
-    }
+  
 }

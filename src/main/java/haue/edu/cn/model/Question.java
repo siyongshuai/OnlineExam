@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Question {
     private Integer id;
@@ -23,11 +23,20 @@ public class Question {
 
     private String optiond;
 
-    private Date postdate;
+    private Timestamp postdate;
 
     private Integer adminid;
 
-    public Integer getId() {
+    
+    public Timestamp getPostdate() {
+		return postdate;
+	}
+
+	public void setPostdate(Timestamp postdate) {
+		this.postdate = postdate;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -107,13 +116,6 @@ public class Question {
         this.optiond = optiond == null ? null : optiond.trim();
     }
 
-    public Date getPostdate() {
-        return postdate;
-    }
-
-    public void setPostdate(Date postdate) {
-        this.postdate = postdate;
-    }
 
     public Integer getAdminid() {
         return adminid;

@@ -1,234 +1,112 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="haue.edu.cn.dao.QuestionDBMapper" >
-  <resultMap id="BaseResultMap" type="haue.edu.cn.model.QuestionDB" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="dbid" property="dbid" jdbcType="INTEGER" />
-    <result column="qtype" property="qtype" jdbcType="INTEGER" />
-    <result column="qlevel" property="qlevel" jdbcType="INTEGER" />
-    <result column="qfrom" property="qfrom" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="optionA" property="optiona" jdbcType="VARCHAR" />
-    <result column="optionB" property="optionb" jdbcType="VARCHAR" />
-    <result column="optionC" property="optionc" jdbcType="VARCHAR" />
-    <result column="optionD" property="optiond" jdbcType="VARCHAR" />
-    <result column="postdate" property="postdate" jdbcType="TIMESTAMP" />
-    <result column="adminid" property="adminid" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="haue.edu.cn.dao.QuestionDBMapper">
+  <resultMap id="BaseResultMap" type="haue.edu.cn.model.QuestionDB">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dname" jdbcType="VARCHAR" property="dname" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="cdate" jdbcType="TIMESTAMP" property="cdate" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="haue.edu.cn.model.QuestionDBWithBLOBs" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-    <result column="skey" property="skey" jdbcType="LONGVARCHAR" />
-    <result column="keydesc" property="keydesc" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, dbid, qtype, qlevel, qfrom, status, optionA, optionB, optionC, optionD, postdate, 
-    adminid
+  <sql id="Base_Column_List">
+    id, dname, remark, adminid, cdate, status
   </sql>
-  <sql id="Blob_Column_List" >
-    content, skey, keydesc
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from oe_question
+    from oe_question_db
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from oe_question
+    <select id="selectAll"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oe_question_db
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oe_question_db
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="haue.edu.cn.model.QuestionDBWithBLOBs" >
-    insert into oe_question (id, dbid, qtype, 
-      qlevel, qfrom, status, 
-      optionA, optionB, optionC, 
-      optionD, postdate, adminid, 
-      content, skey, keydesc
+  <insert id="insert" parameterType="haue.edu.cn.model.QuestionDB">
+    insert into oe_question_db (id, dname, remark, 
+      adminid, cdate, status
       )
-    values (#{id,jdbcType=INTEGER}, #{dbid,jdbcType=INTEGER}, #{qtype,jdbcType=INTEGER}, 
-      #{qlevel,jdbcType=INTEGER}, #{qfrom,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
-      #{optiona,jdbcType=VARCHAR}, #{optionb,jdbcType=VARCHAR}, #{optionc,jdbcType=VARCHAR}, 
-      #{optiond,jdbcType=VARCHAR}, #{postdate,jdbcType=TIMESTAMP}, #{adminid,jdbcType=INTEGER}, 
-      #{content,jdbcType=LONGVARCHAR}, #{skey,jdbcType=LONGVARCHAR}, #{keydesc,jdbcType=LONGVARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{adminid,jdbcType=INTEGER}, #{cdate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="haue.edu.cn.model.QuestionDBWithBLOBs" >
-    insert into oe_question
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+  <insert id="insertSelective" parameterType="haue.edu.cn.model.QuestionDB">
+    insert into oe_question_db
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="dbid != null" >
-        dbid,
+      <if test="dname != null">
+        dname,
       </if>
-      <if test="qtype != null" >
-        qtype,
+      <if test="remark != null">
+        remark,
       </if>
-      <if test="qlevel != null" >
-        qlevel,
-      </if>
-      <if test="qfrom != null" >
-        qfrom,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="optiona != null" >
-        optionA,
-      </if>
-      <if test="optionb != null" >
-        optionB,
-      </if>
-      <if test="optionc != null" >
-        optionC,
-      </if>
-      <if test="optiond != null" >
-        optionD,
-      </if>
-      <if test="postdate != null" >
-        postdate,
-      </if>
-      <if test="adminid != null" >
+      <if test="adminid != null">
         adminid,
       </if>
-      <if test="content != null" >
-        content,
+      <if test="cdate != null">
+        cdate,
       </if>
-      <if test="skey != null" >
-        skey,
-      </if>
-      <if test="keydesc != null" >
-        keydesc,
+      <if test="status != null">
+        status,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="dbid != null" >
-        #{dbid,jdbcType=INTEGER},
+      <if test="dname != null">
+        #{dname,jdbcType=VARCHAR},
       </if>
-      <if test="qtype != null" >
-        #{qtype,jdbcType=INTEGER},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="qlevel != null" >
-        #{qlevel,jdbcType=INTEGER},
-      </if>
-      <if test="qfrom != null" >
-        #{qfrom,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="optiona != null" >
-        #{optiona,jdbcType=VARCHAR},
-      </if>
-      <if test="optionb != null" >
-        #{optionb,jdbcType=VARCHAR},
-      </if>
-      <if test="optionc != null" >
-        #{optionc,jdbcType=VARCHAR},
-      </if>
-      <if test="optiond != null" >
-        #{optiond,jdbcType=VARCHAR},
-      </if>
-      <if test="postdate != null" >
-        #{postdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="adminid != null" >
+      <if test="adminid != null">
         #{adminid,jdbcType=INTEGER},
       </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
+      <if test="cdate != null">
+        #{cdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="skey != null" >
-        #{skey,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="keydesc != null" >
-        #{keydesc,jdbcType=LONGVARCHAR},
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.QuestionDBWithBLOBs" >
-    update oe_question
-    <set >
-      <if test="dbid != null" >
-        dbid = #{dbid,jdbcType=INTEGER},
+  <update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.QuestionDB">
+    update oe_question_db
+    <set>
+      <if test="dname != null">
+        dname = #{dname,jdbcType=VARCHAR},
       </if>
-      <if test="qtype != null" >
-        qtype = #{qtype,jdbcType=INTEGER},
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="qlevel != null" >
-        qlevel = #{qlevel,jdbcType=INTEGER},
-      </if>
-      <if test="qfrom != null" >
-        qfrom = #{qfrom,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="optiona != null" >
-        optionA = #{optiona,jdbcType=VARCHAR},
-      </if>
-      <if test="optionb != null" >
-        optionB = #{optionb,jdbcType=VARCHAR},
-      </if>
-      <if test="optionc != null" >
-        optionC = #{optionc,jdbcType=VARCHAR},
-      </if>
-      <if test="optiond != null" >
-        optionD = #{optiond,jdbcType=VARCHAR},
-      </if>
-      <if test="postdate != null" >
-        postdate = #{postdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="adminid != null" >
+      <if test="adminid != null">
         adminid = #{adminid,jdbcType=INTEGER},
       </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
+      <if test="cdate != null">
+        cdate = #{cdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="skey != null" >
-        skey = #{skey,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="keydesc != null" >
-        keydesc = #{keydesc,jdbcType=LONGVARCHAR},
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="haue.edu.cn.model.QuestionDBWithBLOBs" >
-    update oe_question
-    set dbid = #{dbid,jdbcType=INTEGER},
-      qtype = #{qtype,jdbcType=INTEGER},
-      qlevel = #{qlevel,jdbcType=INTEGER},
-      qfrom = #{qfrom,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR},
-      optionA = #{optiona,jdbcType=VARCHAR},
-      optionB = #{optionb,jdbcType=VARCHAR},
-      optionC = #{optionc,jdbcType=VARCHAR},
-      optionD = #{optiond,jdbcType=VARCHAR},
-      postdate = #{postdate,jdbcType=TIMESTAMP},
+  <update id="updateByPrimaryKey" parameterType="haue.edu.cn.model.QuestionDB">
+    update oe_question_db
+    set dname = #{dname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       adminid = #{adminid,jdbcType=INTEGER},
-      content = #{content,jdbcType=LONGVARCHAR},
-      skey = #{skey,jdbcType=LONGVARCHAR},
-      keydesc = #{keydesc,jdbcType=LONGVARCHAR}
+      cdate = #{cdate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="haue.edu.cn.model.QuestionDB" >
-    update oe_question
-    set dbid = #{dbid,jdbcType=INTEGER},
-      qtype = #{qtype,jdbcType=INTEGER},
-      qlevel = #{qlevel,jdbcType=INTEGER},
-      qfrom = #{qfrom,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR},
-      optionA = #{optiona,jdbcType=VARCHAR},
-      optionB = #{optionb,jdbcType=VARCHAR},
-      optionC = #{optionc,jdbcType=VARCHAR},
-      optionD = #{optiond,jdbcType=VARCHAR},
-      postdate = #{postdate,jdbcType=TIMESTAMP},
-      adminid = #{adminid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  
 </mapper>

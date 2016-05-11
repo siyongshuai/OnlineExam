@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class ExamInfo {
     private Integer id;
@@ -9,9 +9,9 @@ public class ExamInfo {
 
     private Integer pid;
 
-    private Date sdate;
+    private Timestamp sdate;
 
-    private Date edate;
+    private Timestamp edate;
 
     private String ip;
 
@@ -20,8 +20,25 @@ public class ExamInfo {
     private String status;
 
     private String remark;
+    
 
-    public Integer getId() {
+    public Timestamp getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(Timestamp sdate) {
+		this.sdate = sdate;
+	}
+
+	public Timestamp getEdate() {
+		return edate;
+	}
+
+	public void setEdate(Timestamp edate) {
+		this.edate = edate;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -45,21 +62,7 @@ public class ExamInfo {
         this.pid = pid;
     }
 
-    public Date getSdate() {
-        return sdate;
-    }
 
-    public void setSdate(Date sdate) {
-        this.sdate = sdate;
-    }
-
-    public Date getEdate() {
-        return edate;
-    }
-
-    public void setEdate(Date edate) {
-        this.edate = edate;
-    }
 
     public String getIp() {
         return ip;
