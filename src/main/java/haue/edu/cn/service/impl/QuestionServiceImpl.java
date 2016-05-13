@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import haue.edu.cn.dao.QuestionMapper;
+import haue.edu.cn.model.PaperCondition;
+import haue.edu.cn.model.QuestionCondition;
+import haue.edu.cn.model.QuestionID;
 import haue.edu.cn.model.QuestionWithBLOBs;
 import haue.edu.cn.service.CommonService;
 
@@ -22,6 +25,21 @@ public class QuestionServiceImpl implements CommonService<QuestionWithBLOBs> {
 		
 	}
  	
+	public List<QuestionID> getIdByRandom(Integer qtype,Integer num){
+		return questionDao.selectIdByRandom(qtype, num);
+	}
+	
+	public List<Integer> getIdsByRandom(Integer qtype,Integer num){
+		return questionDao.selectIdsByRandom(qtype, num);
+	}
+	
+	public List<Integer> getRandomIdsByCondition(QuestionCondition questionCondition){
+		return questionDao.selectRandomIdsByCondition(questionCondition);
+	}
+	
+	public List<Integer> getRandomIds(PaperCondition paperCondition){
+		return questionDao.selectRandomIds(paperCondition);
+	}
 	
 	public int add(QuestionWithBLOBs record){
 		 return questionDao.insert(record);

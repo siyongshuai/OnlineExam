@@ -1,6 +1,8 @@
 package haue.edu.cn.model;
 
 public class PaperDetail {
+    private Integer id;
+
     private Integer pid;
 
     private Integer qid;
@@ -10,6 +12,25 @@ public class PaperDetail {
     private Integer score;
 
     private Integer orderid;
+
+    private Question question;
+    
+    
+    public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+	public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getPid() {
         return pid;

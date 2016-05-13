@@ -1,5 +1,7 @@
 package haue.edu.cn.dao;
 
+import java.util.List;
+
 import haue.edu.cn.model.Paper;
 
 public interface PaperMapper {
@@ -10,6 +12,10 @@ public interface PaperMapper {
     int insertSelective(Paper record);
 
     Paper selectByPrimaryKey(Integer id);
+    
+    List<Paper> selectAll();
+    
+    List<Paper> selectQuestionsByPaperId(Integer pid);
 
     int updateByPrimaryKeySelective(Paper record);
 

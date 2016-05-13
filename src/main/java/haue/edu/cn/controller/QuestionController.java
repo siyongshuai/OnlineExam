@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import haue.edu.cn.model.AjaxResult;
+import haue.edu.cn.model.PaperCondition;
+import haue.edu.cn.model.QuestionCondition;
+import haue.edu.cn.model.QuestionID;
 import haue.edu.cn.model.QuestionWithBLOBs;
 import haue.edu.cn.model.ReturnResult;
 import haue.edu.cn.service.impl.QuestionServiceImpl;
@@ -35,6 +38,49 @@ public class QuestionController {
 		model.addAttribute("questionList", questionList);
 		
 		return  questionService.get();
+	}
+	
+	@RequestMapping("/question/random.do")
+	@ResponseBody
+	public  List<QuestionID> getIds(HttpServletRequest request){
+		
+	int qtype =1;
+	int num =10;
+		
+		return  questionService.getIdByRandom(qtype, num);
+	}
+	
+	@RequestMapping("/question/random2.do")
+	@ResponseBody
+	public  List<Integer> getIdsByRandom(HttpServletRequest request){
+		
+	int qtype =1;
+	int num =10;
+		
+		return  questionService.getIdsByRandom(qtype, num);
+	}
+	
+	@RequestMapping("/question/random3.do")
+	@ResponseBody
+	public  List<Integer> getRandomIdsByCondition(HttpServletRequest request){
+		
+		QuestionCondition questionCondition = new QuestionCondition();
+
+		questionCondition.setDbid(1);
+		questionCondition.setNum(10);
+		questionCondition.setQtype(1);
+		return  questionService.getRandomIdsByCondition(questionCondition);
+	}
+	@RequestMapping("/question/random4.do")
+	@ResponseBody
+	public  List<Integer> getRandomIds(HttpServletRequest request){
+		
+		PaperCondition paperCondition = new PaperCondition();
+
+		paperCondition.setQuestiondb(1);
+		paperCondition.setNum(10);
+		paperCondition.setQtype(1);
+		return  questionService.getRandomIds(paperCondition);
 	}
 	
 	@RequestMapping("/question/display.do")

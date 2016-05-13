@@ -1,3 +1,4 @@
+<%@page import="com.sun.mail.imap.protocol.Status"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -20,7 +21,7 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>开始考试</title>
 </head>
 <body>
 	<div class="container-fluid container">
@@ -29,11 +30,12 @@
 			<c:forEach items="${questionList}" var="b" varStatus="status">
 				<br>
 				<label>第${status.index + 1}题</label>
-				<br />				
-				<input type="radio"  name="question_${b.id }"  value="A" />A. ${b.optiona }<br />
-				<input type="radio" name="question_${b.id }" value="B" />B. ${b.optionb }<br />
-				<input type="radio" name="question_${b.id }" value="C" />C. ${b.optionc }<br />
-				<input type="radio" name="question_${b.id }" value="D" />D. ${b.optiond }<br />
+				<label>${b.question.content }</label>
+				<br />
+				<input type="radio" name="question_${b.question.id }" value="A" />A. ${b.question.optiona }<br />
+				<input type="radio" name="question_${b.question.id }" value="B" />B. ${b.question.optionb }<br />
+				<input type="radio" name="question_${b.question.id }" value="C" />C. ${b.question.optionc }<br />
+				<input type="radio" name="question_${b.question.id }" value="D" />D. ${b.question.optiond }<br />
 			</c:forEach>
 			<a href="#" class="easyui-linkbutton" plain="true"
 				iconCls="icon-save">提交</a>

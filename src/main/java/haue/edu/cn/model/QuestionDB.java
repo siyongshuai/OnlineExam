@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.sql.Timestamp;
+
 
 public class QuestionDB {
     private Integer id;
@@ -11,17 +11,17 @@ public class QuestionDB {
 
     private Integer adminid;
 
-    private Timestamp cdate;
+    private String cdate;
 
     private String status;
 
     
     
-    public Timestamp getCdate() {
+    public String getCdate() {
 		return cdate;
 	}
 
-	public void setCdate(Timestamp cdate) {
+	public void setCdate(String cdate) {
 		this.cdate = cdate;
 	}
 

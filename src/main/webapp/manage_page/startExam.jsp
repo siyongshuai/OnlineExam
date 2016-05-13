@@ -7,7 +7,7 @@
 
 <%@include file="/commons/csslibs.jspf"%>
 <%@include file="/commons/jslibs.jspf"%>
-<title>Insert title here</title>
+<title>开始考试</title>
 </head>
 <body>
 

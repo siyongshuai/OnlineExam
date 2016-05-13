@@ -1,5 +1,7 @@
 package haue.edu.cn.dao;
 
+import java.util.List;
+
 import haue.edu.cn.model.ExamDetail;
 
 public interface ExamDetailMapper {
@@ -10,6 +12,12 @@ public interface ExamDetailMapper {
     int insertSelective(ExamDetail record);
 
     ExamDetail selectByPrimaryKey(Integer id);
+    
+    List<ExamDetail> selectAll();
+    
+    List<ExamDetail> selectByCondition(ExamDetail condition);
+    
+    int insertMore(List<ExamDetail> examDetails);
 
     int updateByPrimaryKeySelective(ExamDetail record);
 

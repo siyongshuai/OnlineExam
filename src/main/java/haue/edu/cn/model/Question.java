@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.sql.Timestamp;
+
 
 public class Question {
     private Integer id;
@@ -23,16 +23,16 @@ public class Question {
 
     private String optiond;
 
-    private Timestamp postdate;
+    private String postdate;
 
     private Integer adminid;
 
     
-    public Timestamp getPostdate() {
+    public String getPostdate() {
 		return postdate;
 	}
 
-	public void setPostdate(Timestamp postdate) {
+	public void setPostdate(String postdate) {
 		this.postdate = postdate;
 	}
 

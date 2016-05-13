@@ -2,21 +2,90 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="haue.edu.cn.dao.PaperDetailMapper" >
   <resultMap id="BaseResultMap" type="haue.edu.cn.model.PaperDetail" >
-    <result column="pid" property="pid" jdbcType="INTEGER" />
-    <result column="qid" property="qid" jdbcType="INTEGER" />
-    <result column="cid" property="cid" jdbcType="INTEGER" />
-    <result column="score" property="score" jdbcType="INTEGER" />
-    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+	<result column="pid" property="pid" jdbcType="INTEGER" />
+	<result column="qid" property="qid" jdbcType="INTEGER" />
+	<result column="cid" property="cid" jdbcType="INTEGER" />
+	<result column="score" property="score" jdbcType="INTEGER" />
+	<result column="orderid" property="orderid" jdbcType="INTEGER" />
+	<!-- 添加关联关系 -->
+	<association property="question" column="question"
+		javaType="haue.edu.cn.model.QuestionWithBLOBs">
+		<result column="q_id" property="id" jdbcType="INTEGER" />
+		<result column="optionA" property="optiona" jdbcType="VARCHAR" />
+		<result column="optionB" property="optionb" jdbcType="VARCHAR" />
+		<result column="optionC" property="optionc" jdbcType="VARCHAR" />
+		<result column="optionD" property="optiond" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	</association>
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, qid, cid, score, orderid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_paper_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  	<select id="selectQuestionsByPaperId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	SELECT
+	b.id as q_id,
+	b.optionA,
+	b.optionB,
+	b.optionC,
+	b.optionD,
+	b.content,
+	a.cid,
+	a.score
+	FROM
+	oe_paper_detail a
+	LEFT OUTER JOIN
+	oe_question b ON a.qid = b.id
+	where a.pid = #{id,jdbcType=INTEGER}
+	</select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_paper_detail
+  </select>
+      <select id="selectByCondition" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_paper_detail
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from oe_paper_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="haue.edu.cn.model.PaperDetail" >
-    insert into oe_paper_detail (pid, qid, cid, 
-      score, orderid)
-    values (#{pid,jdbcType=INTEGER}, #{qid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
-      #{score,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER})
+    insert into oe_paper_detail (id, pid, qid, 
+      cid, score, orderid
+      )
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{qid,jdbcType=INTEGER}, 
+      #{cid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}
+      )
   </insert>
+	<insert id="insertMore" parameterType="java.util.List" >
+		insert into oe_paper_detail (id, pid, qid,
+		cid, score, orderid
+		)
+		values
+
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id,jdbcType=INTEGER}, #{item.pid,jdbcType=INTEGER},
+			#{item.qid,jdbcType=INTEGER},#{item.cid,jdbcType=INTEGER},
+			#{item.score,jdbcType=INTEGER}, #{item.orderid,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
   <insert id="insertSelective" parameterType="haue.edu.cn.model.PaperDetail" >
     insert into oe_paper_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="pid != null" >
         pid,
       </if>
@@ -34,6 +103,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="pid != null" >
         #{pid,jdbcType=INTEGER},
       </if>
@@ -51,4 +123,26 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.PaperDetail" >
+    update oe_paper_detail
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="qid != null" >
+        qid = #{qid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+ e=INTEGER}
+  </update>
 </mapper>

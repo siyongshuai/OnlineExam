@@ -5,8 +5,8 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
-    <result column="sdate" property="sdate" jdbcType="TIMESTAMP" />
-    <result column="edate" property="edate" jdbcType="TIMESTAMP" />
+    <result column="sdate" property="sdate" jdbcType="VARCHAR" />
+    <result column="edate" property="edate" jdbcType="VARCHAR" />
     <result column="ip" property="ip" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
       score, status, remark
       )
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
-      #{sdate,jdbcType=TIMESTAMP}, #{edate,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, 
+      #{sdate,jdbcType=VARCHAR}, #{edate,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
       #{score,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
@@ -77,10 +77,10 @@
         #{pid,jdbcType=INTEGER},
       </if>
       <if test="sdate != null" >
-        #{sdate,jdbcType=TIMESTAMP},
+        #{sdate,jdbcType=VARCHAR},
       </if>
       <if test="edate != null" >
-        #{edate,jdbcType=TIMESTAMP},
+        #{edate,jdbcType=VARCHAR},
       </if>
       <if test="ip != null" >
         #{ip,jdbcType=VARCHAR},
@@ -106,10 +106,10 @@
         pid = #{pid,jdbcType=INTEGER},
       </if>
       <if test="sdate != null" >
-        sdate = #{sdate,jdbcType=TIMESTAMP},
+        sdate = #{sdate,jdbcType=VARCHAR},
       </if>
       <if test="edate != null" >
-        edate = #{edate,jdbcType=TIMESTAMP},
+        edate = #{edate,jdbcType=VARCHAR},
       </if>
       <if test="ip != null" >
         ip = #{ip,jdbcType=VARCHAR},
@@ -130,8 +130,8 @@
     update oe_exam_info
     set uid = #{uid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
-      sdate = #{sdate,jdbcType=TIMESTAMP},
-      edate = #{edate,jdbcType=TIMESTAMP},
+      sdate = #{sdate,jdbcType=VARCHAR},
+      edate = #{edate,jdbcType=VARCHAR},
       ip = #{ip,jdbcType=VARCHAR},
       score = #{score,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},

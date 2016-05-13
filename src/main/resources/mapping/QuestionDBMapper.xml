@@ -6,7 +6,7 @@
     <result column="dname" jdbcType="VARCHAR" property="dname" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="adminid" jdbcType="INTEGER" property="adminid" />
-    <result column="cdate" jdbcType="TIMESTAMP" property="cdate" />
+    <result column="cdate" jdbcType="VARCHAR" property="cdate" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -32,7 +32,7 @@
       adminid, cdate, status
       )
     values (#{id,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{adminid,jdbcType=INTEGER}, #{cdate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      #{adminid,jdbcType=INTEGER}, #{cdate,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="haue.edu.cn.model.QuestionDB">
@@ -71,7 +71,7 @@
         #{adminid,jdbcType=INTEGER},
       </if>
       <if test="cdate != null">
-        #{cdate,jdbcType=TIMESTAMP},
+        #{cdate,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
@@ -91,7 +91,7 @@
         adminid = #{adminid,jdbcType=INTEGER},
       </if>
       <if test="cdate != null">
-        cdate = #{cdate,jdbcType=TIMESTAMP},
+        cdate = #{cdate,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
@@ -104,7 +104,7 @@
     set dname = #{dname,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       adminid = #{adminid,jdbcType=INTEGER},
-      cdate = #{cdate,jdbcType=TIMESTAMP},
+      cdate = #{cdate,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

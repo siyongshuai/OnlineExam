@@ -1,6 +1,6 @@
 package haue.edu.cn.model;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 public class Paper {
     private Integer id;
@@ -23,20 +23,35 @@ public class Paper {
 
     private String qorder;
 
-    private Timestamp postdate;
+    private String postdate;
 
     private String showScore;
     
-    public Timestamp getPostdate() {
- 		return postdate;
- 	}
-
- 	public void setPostdate(Timestamp postdate) {
- 		this.postdate = postdate;
- 	}
+   private List<PaperDetail> pds;
+   
+  
+   
+   
 
 
-    public Integer getId() {
+
+	public List<PaperDetail> getPds() {
+	return pds;
+}
+
+public void setPds(List<PaperDetail> pds) {
+	this.pds = pds;
+}
+
+	public String getPostdate() {
+		return postdate;
+	}
+
+	public void setPostdate(String postdate) {
+		this.postdate = postdate;
+	}
+
+	public Integer getId() {
         return id;
     }
 

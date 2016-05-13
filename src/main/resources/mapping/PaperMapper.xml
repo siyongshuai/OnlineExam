@@ -12,18 +12,54 @@
     <result column="total_score" property="totalScore" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="qorder" property="qorder" jdbcType="VARCHAR" />
-    <result column="postdate" property="postdate" jdbcType="TIMESTAMP" />
+    <result column="postdate" property="postdate" jdbcType="VARCHAR" />
     <result column="show_score" property="showScore" jdbcType="VARCHAR" />
+    <!-- 添加外键关联 -->
+	<collection property="pds" column="pds" ofType="haue.edu.cn.model.PaperDetail">
+		<result column="pd_id" property="id" jdbcType="INTEGER" />
+		<result column="pd_qid" property="qid" />
+		<result column="cid" property="cid" jdbcType="INTEGER" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<association property="question" column="question" javaType="haue.edu.cn.model.QuestionWithBLOBs">
+			<result column="q_id" property="id" jdbcType="INTEGER"/>
+			<result column="optionA" property="optiona" jdbcType="VARCHAR" />
+			<result column="optionB" property="optionb" jdbcType="VARCHAR" />
+			<result column="optionC" property="optionc" jdbcType="VARCHAR" />
+			<result column="optionD" property="optiond" jdbcType="VARCHAR" />
+			<result column="content" property="content" jdbcType="LONGVARCHAR" />
+		</association>
+	</collection>
   </resultMap>
   <sql id="Base_Column_List" >
     id, paper_name, adminid, status, starttime, endtime, paper_minute, total_score, remark, 
     qorder, postdate, show_score
   </sql>
+	<select id="selectQuestionsByPaperId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	SELECT
+	c.id as q_id,
+	c.optionA,
+	c.optionB,
+	c.optionC,
+	c.optionD,
+	c.content,
+	b.cid,
+	b.score
+	FROM
+	oe_paper_detail b
+	LEFT OUTER JOIN
+	oe_question c ON b.qid = c.id
+	where b.pid = #{id,jdbcType=INTEGER}
+	</select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from oe_paper
     where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_paper   
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from oe_paper
@@ -38,7 +74,7 @@
     values (#{id,jdbcType=INTEGER}, #{paperName,jdbcType=VARCHAR}, #{adminid,jdbcType=INTEGER}, 
       #{status,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, 
       #{paperMinute,jdbcType=INTEGER}, #{totalScore,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{qorder,jdbcType=VARCHAR}, #{postdate,jdbcType=TIMESTAMP}, #{showScore,jdbcType=VARCHAR}
+      #{qorder,jdbcType=VARCHAR}, #{postdate,jdbcType=VARCHAR}, #{showScore,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="haue.edu.cn.model.Paper" >
@@ -113,7 +149,7 @@
         #{qorder,jdbcType=VARCHAR},
       </if>
       <if test="postdate != null" >
-        #{postdate,jdbcType=TIMESTAMP},
+        #{postdate,jdbcType=VARCHAR},
       </if>
       <if test="showScore != null" >
         #{showScore,jdbcType=VARCHAR},
@@ -151,7 +187,7 @@
         qorder = #{qorder,jdbcType=VARCHAR},
       </if>
       <if test="postdate != null" >
-        postdate = #{postdate,jdbcType=TIMESTAMP},
+        postdate = #{postdate,jdbcType=VARCHAR},
       </if>
       <if test="showScore != null" >
         show_score = #{showScore,jdbcType=VARCHAR},
@@ -170,7 +206,7 @@
       total_score = #{totalScore,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       qorder = #{qorder,jdbcType=VARCHAR},
-      postdate = #{postdate,jdbcType=TIMESTAMP},
+      postdate = #{postdate,jdbcType=VARCHAR},
       show_score = #{showScore,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

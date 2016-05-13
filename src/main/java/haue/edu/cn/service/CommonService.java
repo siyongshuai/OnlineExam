@@ -4,10 +4,15 @@ import java.util.List;
 
 public interface CommonService<T> {
 
-	List<T> get();
-	T getOne(Integer id);
-	int add(T record);
-	int delete(T record);
-	int update(T record);
-	List<T> query(T condition);
+	public List<T> get();
+
+	public T getOne(Integer id);
+
+	public int add(T record);
+
+	public int delete(T record);
+
+	public int update(T record);
+
+	public List<T> query(T condition);
 }

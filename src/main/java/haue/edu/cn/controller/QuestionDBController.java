@@ -11,14 +11,14 @@ import haue.edu.cn.model.QuestionDB;
 import haue.edu.cn.service.impl.QuestionDBServiceImpl;
 
 @Controller
-@RequestMapping("manage_page")
+@RequestMapping("manage_page/questiondb/")
 public class QuestionDBController {
 
 	
 	@Autowired
 	private QuestionDBServiceImpl questionDBService;
 	
-	@RequestMapping("questiondb/get.do")
+	@RequestMapping("get.do")
 	public @ResponseBody List<QuestionDB> get(){
 	 return questionDBService.getAll();
 	}

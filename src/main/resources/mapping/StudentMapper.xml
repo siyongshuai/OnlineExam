@@ -8,14 +8,14 @@
     <result column="userpass" property="userpass" jdbcType="VARCHAR" />
     <result column="photo" property="photo" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="regdate" property="regdate" jdbcType="TIMESTAMP" />
+    <result column="regdate" property="regdate" jdbcType="VARCHAR" />
     <result column="realname" property="realname" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="mobi" property="mobi" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="gid" property="gid" jdbcType="INTEGER" />
     <result column="logintimes" property="logintimes" jdbcType="INTEGER" />
-    <result column="lastlogin" property="lastlogin" jdbcType="TIMESTAMP" />
+    <result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, userno, username, userpass, photo, status, regdate, realname, email, mobi, remark, 
@@ -39,9 +39,9 @@
       logintimes, lastlogin)
     values (#{id,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{userpass,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{regdate,jdbcType=TIMESTAMP}, #{realname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{regdate,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{mobi,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{gid,jdbcType=INTEGER}, 
-      #{logintimes,jdbcType=INTEGER}, #{lastlogin,jdbcType=TIMESTAMP})
+      #{logintimes,jdbcType=INTEGER}, #{lastlogin,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="haue.edu.cn.model.Student" >
     insert into oe_user
@@ -109,7 +109,7 @@
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="regdate != null" >
-        #{regdate,jdbcType=TIMESTAMP},
+        #{regdate,jdbcType=VARCHAR},
       </if>
       <if test="realname != null" >
         #{realname,jdbcType=VARCHAR},
@@ -130,7 +130,7 @@
         #{logintimes,jdbcType=INTEGER},
       </if>
       <if test="lastlogin != null" >
-        #{lastlogin,jdbcType=TIMESTAMP},
+        #{lastlogin,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,7 +153,7 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="regdate != null" >
-        regdate = #{regdate,jdbcType=TIMESTAMP},
+        regdate = #{regdate,jdbcType=VARCHAR},
       </if>
       <if test="realname != null" >
         realname = #{realname,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
         logintimes = #{logintimes,jdbcType=INTEGER},
       </if>
       <if test="lastlogin != null" >
-        lastlogin = #{lastlogin,jdbcType=TIMESTAMP},
+        lastlogin = #{lastlogin,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -186,14 +186,14 @@
       userpass = #{userpass,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
-      regdate = #{regdate,jdbcType=TIMESTAMP},
+      regdate = #{regdate,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       mobi = #{mobi,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       gid = #{gid,jdbcType=INTEGER},
       logintimes = #{logintimes,jdbcType=INTEGER},
-      lastlogin = #{lastlogin,jdbcType=TIMESTAMP}
+      lastlogin = #{lastlogin,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -21,6 +21,11 @@
     from oe_exam_detail
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_exam_detail
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from oe_exam_detail
     where id = #{id,jdbcType=INTEGER}
@@ -35,6 +40,23 @@
       #{score,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{qtype,jdbcType=INTEGER}
       )
   </insert>
+	<insert id="insertMore" parameterType="java.util.List">
+		insert into oe_exam_detail (id, uid, pid,
+		qid, user_answer, status,
+		score, remark, qtype
+		)
+		values
+
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id,jdbcType=INTEGER}, #{item.uid,jdbcType=INTEGER},
+			#{item.pid,jdbcType=INTEGER},
+			#{item.qid,jdbcType=INTEGER}, #{item.userAnswer,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR},
+			#{item.score,jdbcType=INTEGER}, #{item.remark,jdbcType=VARCHAR},
+			#{item.qtype,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
   <insert id="insertSelective" parameterType="haue.edu.cn.model.ExamDetail" >
     insert into oe_exam_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
