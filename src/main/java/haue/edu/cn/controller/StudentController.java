@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import haue.edu.cn.model.AjaxResult;
 import haue.edu.cn.model.Student;
 import haue.edu.cn.service.impl.StudentServiceImpl;
 @Controller
 @RequestMapping("front_page/student")
-@SessionAttributes("currentUser")
+//@SessionAttributes("currentUser")
 public class StudentController implements CommonController<Student> {
 
 	@Autowired
@@ -84,8 +86,8 @@ public class StudentController implements CommonController<Student> {
 	return studentService.query(condition);
 	}
 
-	
-	public String login(@RequestBody Student student,ModelMap model ){
+	@RequestMapping("login2.do")
+	public String login2(@RequestBody Student student,ModelMap model ){
 		Student currentUser = studentService.login(student);
 		if (currentUser!=null) {
 			model.addAttribute("currentUser", currentUser);
@@ -95,5 +97,27 @@ public class StudentController implements CommonController<Student> {
 			return null;
 		}
 	}
+	@RequestMapping("login1.do")
+	public ModelAndView login1(@RequestBody Student student,ModelMap model ){
+		Student currentUser = studentService.login(student);
+		if (currentUser!=null) {
+			model.addAttribute("currentUser", currentUser);
+			return new ModelAndView("readyToExam");
+		}
+		else{
+			return null;
+		}
+	}
+	@RequestMapping("jsp.do")
+	public String loginJsp(){
+		return "login";
+	}
+	
+	@RequestMapping("login.do")
+	public String login(@RequestBody Student student){
+		studentService.login(student);
+			 return "readyToExam";
+	}
+	
 	
 }

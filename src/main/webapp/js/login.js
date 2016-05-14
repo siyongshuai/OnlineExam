@@ -8,11 +8,13 @@ function user_login(){
 	student.userno = $('#userno').val()
 	student.userpass = $('#userpass').val()
 	student.username = $('#username').val()
-	console.log(student)
-	
+	alert(student)
+	console.log(student.userno)
+	console.log(student.userpass)
+	console.log(student.username)
 	$.ajax({
 		type : "POST",
-		url : baseUrl + "/front_page/student/login.do",
+		url : "http://localhost:8080/OnlineExam" + "/front_page/student/login1.do",
 		dataType : "json",
 		contentType : "application/json;charset=UTF-8",
 		data : JSON.stringify(student),
@@ -28,11 +30,16 @@ function user_login(){
 			console.log(textStatus);
 			console.log("操作失败")
 		}
+		
 	})
 	
 	
 }
-$(function(){
+
+
 	
-	$("#login_btn").click(user_login)
-})
+	
+	$(document).ready(function(){
+		
+		$("#login_btn").click(user_login)
+	})
