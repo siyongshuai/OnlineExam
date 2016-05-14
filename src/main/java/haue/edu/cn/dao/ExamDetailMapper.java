@@ -17,6 +17,10 @@ public interface ExamDetailMapper {
     
     List<ExamDetail> selectByCondition(ExamDetail condition);
     
+    List<ExamDetail> selectUserAnswer();
+    
+    int updateMore(List<ExamDetail> examDetails);
+    
     int insertMore(List<ExamDetail> examDetails);
 
     int updateByPrimaryKeySelective(ExamDetail record);

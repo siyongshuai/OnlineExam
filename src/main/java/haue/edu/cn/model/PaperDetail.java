@@ -16,6 +16,7 @@ public class PaperDetail {
     private Question question;
     
     
+    
     public Question getQuestion() {
 		return question;
 	}

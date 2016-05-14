@@ -11,9 +11,21 @@
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="qtype" property="qtype" jdbcType="INTEGER" />
+    <!-- 添加paperDetail关联查询 -->
+    <association property="paperDetail" javaType="haue.edu.cn.model.PaperDetail">
+    <result column="right_score" property="score" jdbcType="INTEGER" />
+    </association>
+    <!-- 添加question 关联 注意用blob类型 -->
+        <!-- 添加paperDetail关联查询 -->
+    <association property="question" javaType="haue.edu.cn.model.QuestionWithBLOBs">
+    <result column="skey" property="skey" jdbcType="LONGVARCHAR" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, uid, pid, qid, user_answer, status, score, remark, qtype
+  </sql>
+  <sql id="Base_Column_List_Alias" >
+    a.id, a.uid, a.pid, a.qid, a.user_answer, a.status, a.score, a.remark, a.qtype
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,6 +38,21 @@
     <include refid="Base_Column_List" />
     from oe_exam_detail
   </select>
+
+	<select id="selectUserAnswer" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List_Alias" />, 
+		b.score AS right_score, c.skey
+		FROM
+		oe_exam_detail a,
+		oe_paper_detail b,
+		oe_question c
+		WHERE
+		a.qid = b.qid AND a.pid = b.pid
+		AND a.qtype = b.cid
+		AND a.pid = c.id
+
+	</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from oe_exam_detail
     where id = #{id,jdbcType=INTEGER}
@@ -159,5 +186,25 @@
       remark = #{remark,jdbcType=VARCHAR},
       qtype = #{qtype,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <update id="updateMore" parameterType="java.util.List" >		
+    <foreach collection="list" item="item" index="index" open="" close=""
+			separator=";">
+			update oe_exam_detail
+			<set>
+			uid = #{item.uid,jdbcType=INTEGER},
+			pid = #{item.pid,jdbcType=INTEGER},
+			qid = #{item.qid,jdbcType=INTEGER},
+			user_answer = #{item.userAnswer,jdbcType=VARCHAR},
+			status = #{item.status,jdbcType=VARCHAR},
+			score = #{item.score,jdbcType=INTEGER}, 
+			remark = #{item.remark,jdbcType=VARCHAR},
+			qtype = #{item.qtype,jdbcType=INTEGER}
+			
+			</set>
+			where id = #{item.id,jdbcType=INTEGER}
+		</foreach>
+    
   </update>
 </mapper>

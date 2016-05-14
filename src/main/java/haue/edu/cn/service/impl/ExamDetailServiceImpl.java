@@ -19,6 +19,14 @@ public class ExamDetailServiceImpl implements CommonService<ExamDetail> {
 		return edDao.insertMore(examDetails);
 	}
 	
+	public int updateMany(List<ExamDetail> examDetails){
+		return edDao.updateMore(examDetails);
+	}
+	
+	public List<ExamDetail> getUserAnswers(){
+		return edDao.selectUserAnswer();
+	}
+	
 	
 	@Override
 	public List<ExamDetail> get() {

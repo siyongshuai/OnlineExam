@@ -17,13 +17,22 @@
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="../../js/jquery-1.11.3.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>开始考试</title>
 </head>
 <body>
+	<p>${pageContext.request.contextPath}</p>
+	<div id="getting-started"></div>
+	<br />
+	<br />
+	<br />
+	<div class="container"  >
+		<h1><span id="clock" class="bg-primary" ></span></h1>
+	</div>
+
 	<div class="container-fluid container">
 		<form action="">
 
@@ -32,17 +41,20 @@
 				<label>第${status.index + 1}题</label>
 				<label>${b.question.content }</label>
 				<br />
-				<input type="radio" name="question_${b.question.id }" value="A" />A. ${b.question.optiona }<br />
-				<input type="radio" name="question_${b.question.id }" value="B" />B. ${b.question.optionb }<br />
-				<input type="radio" name="question_${b.question.id }" value="C" />C. ${b.question.optionc }<br />
-				<input type="radio" name="question_${b.question.id }" value="D" />D. ${b.question.optiond }<br />
+				<input type="radio" name="${b.question.id }" value="A" />A. ${b.question.optiona }<br />
+				<input type="radio" name="${b.question.id }" value="B" />B. ${b.question.optionb }<br />
+				<input type="radio" name="${b.question.id }" value="C" />C. ${b.question.optionc }<br />
+				<input type="radio" name="${b.question.id }" value="D" />D. ${b.question.optiond }<br />
 			</c:forEach>
-			<a href="#" class="easyui-linkbutton" plain="true"
-				iconCls="icon-save">提交</a>
+			<button id="endExamBtn" type="button" class="btn btn-warning">提交</button>
+
 		</form>
 	</div>
 
-
-
+	<script src="../../js/display.js"></script>
+	<script src="../../js/jquery.countdown.min.js"></script>
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>

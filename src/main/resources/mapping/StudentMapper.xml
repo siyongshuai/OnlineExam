@@ -1,199 +1,254 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="haue.edu.cn.dao.StudentMapper" >
-  <resultMap id="BaseResultMap" type="haue.edu.cn.model.Student" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userno" property="userno" jdbcType="VARCHAR" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="userpass" property="userpass" jdbcType="VARCHAR" />
-    <result column="photo" property="photo" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="regdate" property="regdate" jdbcType="VARCHAR" />
-    <result column="realname" property="realname" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="mobi" property="mobi" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="gid" property="gid" jdbcType="INTEGER" />
-    <result column="logintimes" property="logintimes" jdbcType="INTEGER" />
-    <result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, userno, username, userpass, photo, status, regdate, realname, email, mobi, remark, 
-    gid, logintimes, lastlogin
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from oe_user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from oe_user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="haue.edu.cn.model.Student" >
-    insert into oe_user (id, userno, username, 
-      userpass, photo, status, 
-      regdate, realname, email, 
-      mobi, remark, gid, 
-      logintimes, lastlogin)
-    values (#{id,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{userpass,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{regdate,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{mobi,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{gid,jdbcType=INTEGER}, 
-      #{logintimes,jdbcType=INTEGER}, #{lastlogin,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="haue.edu.cn.model.Student" >
-    insert into oe_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userno != null" >
-        userno,
-      </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="userpass != null" >
-        userpass,
-      </if>
-      <if test="photo != null" >
-        photo,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="regdate != null" >
-        regdate,
-      </if>
-      <if test="realname != null" >
-        realname,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="mobi != null" >
-        mobi,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="gid != null" >
-        gid,
-      </if>
-      <if test="logintimes != null" >
-        logintimes,
-      </if>
-      <if test="lastlogin != null" >
-        lastlogin,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userno != null" >
-        #{userno,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="userpass != null" >
-        #{userpass,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null" >
-        #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="regdate != null" >
-        #{regdate,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null" >
-        #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobi != null" >
-        #{mobi,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="gid != null" >
-        #{gid,jdbcType=INTEGER},
-      </if>
-      <if test="logintimes != null" >
-        #{logintimes,jdbcType=INTEGER},
-      </if>
-      <if test="lastlogin != null" >
-        #{lastlogin,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.Student" >
-    update oe_user
-    <set >
-      <if test="userno != null" >
-        userno = #{userno,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="userpass != null" >
-        userpass = #{userpass,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null" >
-        photo = #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="regdate != null" >
-        regdate = #{regdate,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null" >
-        realname = #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobi != null" >
-        mobi = #{mobi,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="gid != null" >
-        gid = #{gid,jdbcType=INTEGER},
-      </if>
-      <if test="logintimes != null" >
-        logintimes = #{logintimes,jdbcType=INTEGER},
-      </if>
-      <if test="lastlogin != null" >
-        lastlogin = #{lastlogin,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="haue.edu.cn.model.Student" >
-    update oe_user
-    set userno = #{userno,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      userpass = #{userpass,jdbcType=VARCHAR},
-      photo = #{photo,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      regdate = #{regdate,jdbcType=VARCHAR},
-      realname = #{realname,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      mobi = #{mobi,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      gid = #{gid,jdbcType=INTEGER},
-      logintimes = #{logintimes,jdbcType=INTEGER},
-      lastlogin = #{lastlogin,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="haue.edu.cn.dao.StudentMapper">
+	<resultMap id="BaseResultMap" type="haue.edu.cn.model.Student">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userno" property="userno" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpass" property="userpass" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="regdate" property="regdate" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="mobi" property="mobi" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="gid" property="gid" jdbcType="INTEGER" />
+		<result column="logintimes" property="logintimes" jdbcType="INTEGER" />
+		<result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userno, username, userpass, photo, status, regdate, realname, email,
+		mobi, remark,
+		gid, logintimes, lastlogin
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from oe_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from oe_user
+
+	</select>
+	<select id="selectByCondition" resultMap="BaseResultMap"
+		parameterType="haue.edu.cn.model.Student">
+		select
+		<include refid="Base_Column_List" />
+		from oe_user
+		<where>
+			<if test="userno != null">
+				and userno = #{userno,jdbcType=VARCHAR}
+			</if>
+			<if test="username != null">
+				and username = #{username,jdbcType=VARCHAR}
+			</if>
+			<if test="userpass != null">
+				and userpass = #{userpass,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+			 	and status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="realname != null">
+				and realname = #{realname,jdbcType=VARCHAR}
+			</if>
+
+			<if test="email != null">
+				and email = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="mobi != null">
+				and mobi = #{mobi,jdbcType=VARCHAR} 
+			</if>
+			<if test="remark != null">
+				and remark = #{remark,jdbcType=VARCHAR} 
+			</if>
+			<if test="gid != null">
+				and gid = #{gid,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	<select id="selectByLogin" resultMap="BaseResultMap"
+		parameterType="haue.edu.cn.model.Student">
+		select
+		<include refid="Base_Column_List" />
+		from oe_user
+			 where  userno = #{userno,jdbcType=VARCHAR}
+				and username = #{username,jdbcType=VARCHAR}
+				and userpass = #{userpass,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from oe_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="haue.edu.cn.model.Student">
+		insert into oe_user (id, userno, username,
+		userpass, photo, status,
+		regdate, realname, email,
+		mobi, remark, gid,
+		logintimes, lastlogin)
+		values (#{id,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{userpass,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{regdate,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{mobi,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{gid,jdbcType=INTEGER},
+		#{logintimes,jdbcType=INTEGER}, #{lastlogin,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="haue.edu.cn.model.Student">
+		insert into oe_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userno != null">
+				userno,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="userpass != null">
+				userpass,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="regdate != null">
+				regdate,
+			</if>
+			<if test="realname != null">
+				realname,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="mobi != null">
+				mobi,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="gid != null">
+				gid,
+			</if>
+			<if test="logintimes != null">
+				logintimes,
+			</if>
+			<if test="lastlogin != null">
+				lastlogin,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userno != null">
+				#{userno,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpass != null">
+				#{userpass,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="regdate != null">
+				#{regdate,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				#{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="mobi != null">
+				#{mobi,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="gid != null">
+				#{gid,jdbcType=INTEGER},
+			</if>
+			<if test="logintimes != null">
+				#{logintimes,jdbcType=INTEGER},
+			</if>
+			<if test="lastlogin != null">
+				#{lastlogin,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.Student">
+		update oe_user
+		<set>
+			<if test="userno != null">
+				userno = #{userno,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpass != null">
+				userpass = #{userpass,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="regdate != null">
+				regdate = #{regdate,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				realname = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="mobi != null">
+				mobi = #{mobi,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="gid != null">
+				gid = #{gid,jdbcType=INTEGER},
+			</if>
+			<if test="logintimes != null">
+				logintimes = #{logintimes,jdbcType=INTEGER},
+			</if>
+			<if test="lastlogin != null">
+				lastlogin = #{lastlogin,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="haue.edu.cn.model.Student">
+		update oe_user
+		set userno = #{userno,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		userpass = #{userpass,jdbcType=VARCHAR},
+		photo = #{photo,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		regdate = #{regdate,jdbcType=VARCHAR},
+		realname = #{realname,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		mobi = #{mobi,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		gid = #{gid,jdbcType=INTEGER},
+		logintimes = #{logintimes,jdbcType=INTEGER},
+		lastlogin = #{lastlogin,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

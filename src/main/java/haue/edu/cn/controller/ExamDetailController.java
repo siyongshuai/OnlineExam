@@ -27,7 +27,7 @@ public class ExamDetailController implements CommonController<ExamDetail> {
 	@ResponseBody
 	public List<ExamDetail> get() {
 		// TODO Auto-generated method stub
-		return edService.get();
+		return edService.getUserAnswers();
 	}
 
 	@Override
@@ -56,11 +56,18 @@ public class ExamDetailController implements CommonController<ExamDetail> {
 	@ResponseBody
 	public AjaxResult addMany(@RequestBody List<ExamDetail> examDetails) {
 		// TODO Auto-generated method stub
-		if(edService.addMany(examDetails)>0){
-			return  ajaxResult;
-		}else {
+		try {
+			if(edService.addMany(examDetails)>0){
+				return  ajaxResult;
+			}else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("批量增加发生异常");
 			return null;
+			
 		}
+		
 		
 	}
 	@Override

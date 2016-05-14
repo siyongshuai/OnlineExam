@@ -18,8 +18,32 @@ public class ExamDetail {
     private String remark;
 
     private Integer qtype;
+    
+    private PaperDetail paperDetail;
+    
+    private QuestionWithBLOBs question;
+    
+    
 
-    public Integer getId() {
+
+
+	public QuestionWithBLOBs getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(QuestionWithBLOBs question) {
+		this.question = question;
+	}
+
+	public PaperDetail getPaperDetail() {
+		return paperDetail;
+	}
+
+	public void setPaperDetail(PaperDetail paperDetail) {
+		this.paperDetail = paperDetail;
+	}
+
+	public Integer getId() {
         return id;
     }
 
