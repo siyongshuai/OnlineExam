@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-跳转后的jsp
+
 </body>
 </html>

@@ -22,7 +22,7 @@
 <body>
 	<h1 class="text-center">学生在线考试系统</h1>
 	<div class="container">
-		<form id="login_fm">
+		
 			<div class="form-group">
 				<label for="userno">学号</label> <input type="text"
 					class="form-control" id="userno" placeholder="学号">
@@ -35,13 +35,13 @@
 				<label for="userpass">密码</label> <input type="password"
 					class="form-control" id="userpass" placeholder="密码">
 			</div>
-
-
-			<button id="login_btn" type="submit" class="btn btn-default">登录</button>
-			<button id="register_btn" type="submit" class="btn btn-default">注册</button>
-		</form>
+			
+		
+		
+		<input type="submit" id="login_btn"  class="btn btn-default" value="登录">
+		<a href="http://www.baidu.com" target="_blank">新标签页</a>
 	</div>
-	<input type="text" id="baseUrl" value="${pageContext.request.contextPath}">
+
 	<!-- js脚本加载区域 -->
 	<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>

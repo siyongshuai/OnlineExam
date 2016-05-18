@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<%@include file="/commons/csslibs.jspf"%>
-<%@include file="/commons/jslibs.jspf"%>
+<title>登录成功页面</title>
 </head>
 <body>
-
+ <center>Welcome ${currentUser.username}</center>
 </body>
 </html>

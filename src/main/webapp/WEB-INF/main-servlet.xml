@@ -23,7 +23,7 @@
 	<context:annotation-config />
 	<!-- 启动注解驱动的Spring MVC，注册请求url和注解POJO类方法的映射 -->
 	<mvc:annotation-driven />
-	
+
 
 
 	<!--配置拦截器, 多个拦截器,顺序执行 -->
@@ -35,9 +35,9 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/" />
-		 <property name="suffix" value=".jsp" /> 
-		 <property name="order" value="1"/> 
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
 	</bean>
 
 </beans>

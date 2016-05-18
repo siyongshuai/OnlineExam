@@ -1,0 +1,84 @@
+#accordionID>div {
+	background: #eee;
+	overflow: auto;
+	height: auto;
+	/* 		text-align: center; */
+}
+
+#accordionID div  ul {
+	background: #eee;
+	padding-left: 0px;
+	/* 	margin-left:20px; */
+	text-align: center;
+	/* 	height: 500px; */
+}
+
+#accordionID ul li {
+	line-height: 50px;
+	list-style-type: none;
+	width: 100%;
+
+	/* 	border: thin; */
+	/* 	border-bottom-width: 1px; */
+	/* 	background-color: ; */
+}
+/* 树节点字体颜色为黑色 */
+#accordionID ul li a {
+	color: #000;
+	display: block;
+	font-size: 40px;
+	/* 	width:auto; */
+	background: #E0EFFF;
+	text-decoration: none;
+}
+
+#accordionID ul li a span {
+	font-size: 14px;
+	/* 	font-style: oblique; */
+	/* 	font-weight: bold; */
+	/* 	font-family: fantasy; */
+	/* 	padding-left: 30px; */
+	/* 	text-align: left; */
+}
+
+#accordionID ul li a:HOVER {
+	color: #000;
+	display: block;
+	font-size: 40px;
+	background: #DDD;
+}
+
+#accordionID ul li a:VISITED {
+	color: #000;
+	display: block;
+	font-size: 40px;
+	background: #ddd;
+}
+
+.accordion-noborder .accordion-body {
+	background: #E0EFFF;
+}
+
+.accordion .accordion-header-selected {
+	background-color: #B8D1F8;
+}
+
+.panel-title {
+	font-size: 14px;
+	line-height: 16px;
+}
+/* element.style{ */
+/* height: auto; */
+/* } */
+.datagrid-row {
+	height: 32px;
+}
+
+#logo {
+	width: 240px;
+	height: 100%;
+	display: block;
+	float: left;
+	background: url("../images/logo.png") no-repeat;
+	margin-left: 130px;
+}

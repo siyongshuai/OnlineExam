@@ -9,57 +9,57 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import haue.edu.cn.model.AjaxResult;
-import haue.edu.cn.model.Student;
-import haue.edu.cn.service.impl.StudentServiceImpl;
+import haue.edu.cn.model.ExamInfo;
+import haue.edu.cn.service.impl.ExamInfoServiceImpl;
+
 @Controller
-@RequestMapping("manage_page/student")
-@SessionAttributes("currentUser")
-public class StudentController implements CommonController<Student> {
+@RequestMapping("manage_page/ei")
+public class ExamInfoController implements CommonController<ExamInfo> {
 
 	@Autowired
-	private StudentServiceImpl studentService;
+	private ExamInfoServiceImpl eiService;
+	
+	
+	
 	@Override
 	@RequestMapping("get.do")
 	@ResponseBody
-	public List<Student> get() {
+	public List<ExamInfo> get() {
 		// TODO Auto-generated method stub
-		return studentService.get();
+		return eiService.get();
 	}
 
 	@Override
 	@RequestMapping("one.do")
 	@ResponseBody
-	public Student getOne(HttpServletRequest request) {
+	public ExamInfo getOne(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		return studentService.getOne(id);
+		return null;
 	}
 
 	@Override
 	@RequestMapping("add.do")
 	@ResponseBody
-	public AjaxResult add(@RequestBody Student record) {
+	public AjaxResult add(@RequestBody ExamInfo record) {
 		// TODO Auto-generated method stub
-		if (studentService.add(record)>0) {
+		if(eiService.add(record)>0){
 			return new AjaxResult();
-		}
-		else {
+		}else {
 			return null;
 		}
+		
+		
 	}
 
 	@Override
 	@RequestMapping("delete.do")
 	@ResponseBody
-	public AjaxResult delete(@RequestBody Student record) {
-		// TODO Auto-generated method stub
-		if (studentService.delete(record)>0) {
+	public AjaxResult delete(@RequestBody ExamInfo record) {
+		if(eiService.delete(record)>0){
 			return new AjaxResult();
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -67,11 +67,10 @@ public class StudentController implements CommonController<Student> {
 	@Override
 	@RequestMapping("update.do")
 	@ResponseBody
-	public AjaxResult update(@RequestBody Student record) {
-		if (studentService.update(record)>0) {
+	public AjaxResult update(@RequestBody ExamInfo record) {
+		if(eiService.update(record)>0){
 			return new AjaxResult();
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -79,14 +78,8 @@ public class StudentController implements CommonController<Student> {
 	@Override
 	@RequestMapping("query.do")
 	@ResponseBody
-	public List<Student> query(@RequestBody Student condition) {
-	return studentService.query(condition);
+	public List<ExamInfo> query(@RequestBody ExamInfo condition) {
+		return eiService.query(condition);
 	}
 
-	
-	
-	
-	
-	
-	
 }

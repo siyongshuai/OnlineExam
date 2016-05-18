@@ -2,6 +2,7 @@
  * 
  */
 var baseUrl = "http://localhost:8080/OnlineExam"
+var pid = $('input[name=paperId]').val()
 function endExam() {
 	var examlist = [];
 	$("input:radio:checked").each(function(index, domEle) {
@@ -10,10 +11,11 @@ function endExam() {
 		var examdetail = {}
 		examdetail.userAnswer = $(domEle).val()
 		examdetail.uid = 1
-		examdetail.pid = 1
+		examdetail.pid = pid
 		examdetail.qid = $(domEle).attr("name")
 		examdetail.qtype = 1
 		console.log(examdetail)
+		console.log("取出的paperId------------"+examdetail.pid)
 		examlist.push(examdetail);
 
 	})

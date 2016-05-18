@@ -25,6 +25,8 @@
 </head>
 <body>
 	<p>${pageContext.request.contextPath}</p>
+	<p>欢迎${currentUser.username}</p>
+	<p>试卷id=${paperId }</p>
 	<div id="getting-started"></div>
 	<br />
 	<br />
@@ -50,7 +52,8 @@
 
 		</form>
 	</div>
-
+<!-- 定义一个隐藏区域来保存pid -->
+<input type="hidden" id="paperId" name="paperId" value="${paperId }">
 	<script src="../../js/display.js"></script>
 	<script src="../../js/jquery.countdown.min.js"></script>
 	<script type="text/javascript">

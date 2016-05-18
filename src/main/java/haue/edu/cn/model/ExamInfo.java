@@ -19,6 +19,27 @@ public class ExamInfo {
 
 	private String remark;
 
+	private Student user;
+	
+	private Paper paper;
+	
+
+	public Student getUser() {
+		return user;
+	}
+
+	public void setUser(Student user) {
+		this.user = user;
+	}
+
+	public Paper getPaper() {
+		return paper;
+	}
+
+	public void setPaper(Paper paper) {
+		this.paper = paper;
+	}
+
 	public String getSdate() {
 		return sdate;
 	}

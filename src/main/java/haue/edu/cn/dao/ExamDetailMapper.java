@@ -3,6 +3,8 @@ package haue.edu.cn.dao;
 import java.util.List;
 
 import haue.edu.cn.model.ExamDetail;
+import haue.edu.cn.model.ExamInfo;
+import haue.edu.cn.model.ScoreCondition;
 
 public interface ExamDetailMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,6 +20,8 @@ public interface ExamDetailMapper {
     List<ExamDetail> selectByCondition(ExamDetail condition);
     
     List<ExamDetail> selectUserAnswer();
+    
+    List<ExamInfo> selectUserExamScore();
     
     int updateMore(List<ExamDetail> examDetails);
     

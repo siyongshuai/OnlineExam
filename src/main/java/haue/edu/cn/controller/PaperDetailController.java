@@ -32,7 +32,7 @@ public class PaperDetailController implements CommonController<PaperDetail> {
 	@ResponseBody
 	public List<PaperDetail> get() {
 		// TODO Auto-generated method stub
-		return paperDetailService.getQuestions(1);
+		return paperDetailService.get();
 	}
 	
 	@RequestMapping("display.do")

@@ -132,7 +132,7 @@
 						<tr>
 							<th scope="row">正确答案</th>
 							<td><input type="text" name="skey"
-								class="easyui-validatebox"></td>
+								class="easyui-validatebox" ></td>
 						</tr>
 						<tr>
 							<th scope="row">答案解析</th>
@@ -151,7 +151,7 @@
 				<!-- 扩展区 -->
 			</div>
 		</form>
-		<div id="pt_dlg_buttons" style="display: block" class="dialog-button">
+		<div id="question_dlg_buttons" style="display: block" class="dialog-button">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-ok"
 				onclick="saveObjectForm(moduleForm,moduleDialog)">保存</a> <a href="#"
 				class="easyui-linkbutton" iconCls="icon-cancel"

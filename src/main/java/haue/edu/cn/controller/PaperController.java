@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import haue.edu.cn.model.AjaxResult;
 import haue.edu.cn.model.Paper;
+import haue.edu.cn.model.PaperDetail;
+import haue.edu.cn.service.impl.PaperDetailServiceImpl;
 import haue.edu.cn.service.impl.PaperServiceImpl;
 
 @Controller
@@ -23,6 +27,9 @@ public class PaperController implements CommonController<Paper> {
 
 	@Autowired
 	private PaperServiceImpl paperService;
+	
+	@Autowired
+	private PaperDetailServiceImpl pdService;
 	
 	@RequestMapping("jsp.do")
 	public String paper(){
@@ -38,12 +45,26 @@ public class PaperController implements CommonController<Paper> {
 		 int id = Integer.parseInt(request.getParameter("id"));
 		return paperService.getQuestionsByPaperId(id);
 	}
+//	需要先选择试卷，再进行考试
 	
+	@RequestMapping(value="selectPaper.do",method=RequestMethod.GET)
+	public ModelAndView selectPaper( HttpServletRequest request,HttpServletResponse response,ModelAndView model){
+		model.addObject("papers", paperService.get());
+		model.setViewName("selectPaper");
+		return model;
+	}
+	@RequestMapping(value="select2.do",method=RequestMethod.GET)
+	public String selectPaper2(){
+		
+		return "selectPaper2";
+	}
+//	显示考试内容
 	@RequestMapping("display.do")
-	public String displayQuestion(HttpServletRequest request,HttpServletResponse response,Model model){
+	public String displayQuestions(HttpServletRequest request,HttpServletResponse response,Model model){
 		 int pid = Integer.parseInt(request.getParameter("id"));
-		List<Paper> paperQuestionList = paperService.getQuestionsByPaperId(pid);
+		List<PaperDetail> paperQuestionList = pdService.getQuestions(pid);
 		model.addAttribute("questionList", paperQuestionList);
+		model.addAttribute("paperId", pid);
 		return "display";
 	}
 	

@@ -162,6 +162,7 @@ function saveObjectForm(moduleForm,moduleDialog){
 	if(formMethod == "add"){
 //		调用正确的json格式,每个模块的json格式处理是不一样的
 		fmJson = getFmJsonWithRightFormat(moduleForm)
+		console.log("增加记录时正确的json形式---"+fmJson)
 	}
 	console.log(url)
 	$.ajax({

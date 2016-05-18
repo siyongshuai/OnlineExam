@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import haue.edu.cn.dao.ExamDetailMapper;
 import haue.edu.cn.model.ExamDetail;
+import haue.edu.cn.model.ExamInfo;
+import haue.edu.cn.model.ScoreCondition;
 import haue.edu.cn.service.CommonService;
 
 @Service("edService")
@@ -15,16 +17,24 @@ public class ExamDetailServiceImpl implements CommonService<ExamDetail> {
 	@Autowired
 	private ExamDetailMapper edDao;
 	
+
+	
 	public int addMany(List<ExamDetail> examDetails){
 		return edDao.insertMore(examDetails);
 	}
 	
+//	存储计算后每题的分数
 	public int updateMany(List<ExamDetail> examDetails){
 		return edDao.updateMore(examDetails);
 	}
 	
 	public List<ExamDetail> getUserAnswers(){
 		return edDao.selectUserAnswer();
+	}
+	
+//	查询
+	public List<ExamInfo> getUserExamScore(){
+		return edDao.selectUserExamScore();
 	}
 	
 	

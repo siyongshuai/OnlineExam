@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<script type="text/javascript">
-var baseUrl = "${pageContext.request.contextPath}"
-console.log(baseUrl)
-</script>
+<p>这是第一个jsp</p>
+<a href="second.do">点击进行跳转</a>
 </body>
 </html>

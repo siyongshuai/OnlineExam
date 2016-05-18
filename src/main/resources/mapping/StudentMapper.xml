@@ -42,10 +42,10 @@
 		from oe_user
 		<where>
 			<if test="userno != null">
-				and userno = #{userno,jdbcType=VARCHAR}
+				and userno like '%' #{userno,jdbcType=VARCHAR} '%'
 			</if>
 			<if test="username != null">
-				and username = #{username,jdbcType=VARCHAR}
+				and username like '%' #{username,jdbcType=VARCHAR} '%'
 			</if>
 			<if test="userpass != null">
 				and userpass = #{userpass,jdbcType=VARCHAR}
@@ -54,11 +54,11 @@
 			 	and status = #{status,jdbcType=VARCHAR}
 			</if>
 			<if test="realname != null">
-				and realname = #{realname,jdbcType=VARCHAR}
+				and realname like '%' #{realname,jdbcType=VARCHAR} '%'
 			</if>
 
 			<if test="email != null">
-				and email = #{email,jdbcType=VARCHAR}
+				and email like '%' #{email,jdbcType=VARCHAR} '%'
 			</if>
 			<if test="mobi != null">
 				and mobi = #{mobi,jdbcType=VARCHAR} 

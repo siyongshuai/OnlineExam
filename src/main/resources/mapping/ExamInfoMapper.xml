@@ -11,15 +11,69 @@
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <!-- 添加的关联关系 -->
+     <association property="paper" javaType="haue.edu.cn.model.Paper">
+     <id column="paperid" property="id" jdbcType="INTEGER" />
+    <result column="paper_name" property="paperName" jdbcType="VARCHAR" />
+    </association>
+     <association property="user" javaType="haue.edu.cn.model.Student">
+     <id column="userid" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, uid, pid, sdate, edate, ip, score, status, remark
   </sql>
+    <sql id="Base_Column_List_Alias" >
+    a.id, a.uid, a.pid, a.sdate, a.edate, a.ip, a.score, a.status, a.remark
+  </sql>
+  <select id="selectByCondition" resultMap="BaseResultMap"
+		parameterType="haue.edu.cn.model.ExamInfo">
+		select
+		<include refid="Base_Column_List_Alias" />
+		,b.id as userid,b.username ,c.id as paperid, c.paper_name
+
+		from oe_exam_info a , oe_user b, oe_paper c
+		<where>
+		And a.uid=b.id
+		AND a.pid=c.id
+		 	<if test="user!=null and user.username !=null">
+			and b.username like '%' #{user.username,jdbcType=VARCHAR} '%'
+		</if>
+	
+		<if test="paper!=null and paper.paperName !=null">
+			and c.paper_name like '%' #{paper.paperName,jdbcType=VARCHAR} '%'
+		</if>
+		
+		</where>
+</select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from oe_exam_info
     where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oe_exam_info
+  </select>
+     <select id="selectUserScore" resultMap="BaseResultMap"  parameterType="haue.edu.cn.model.ScoreCondition" >
+    select 
+    <include refid="Base_Column_List_Alias" />,
+    b.username , c.paper_name
+    
+    from oe_exam_info a , oe_user b, oe_paper c
+    
+    where a.uid=b.id AND a.pid=c.id
+   
+        <if test="uid !=null">
+      and uid = #{uid,jdbcType=INTEGER}
+    </if>
+	<if test="pid !=null">
+	  and pid = #{pid,jdbcType=INTEGER}
+    </if>
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from oe_exam_info
@@ -138,4 +192,18 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+	<update id="updateMore" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			update oe_exam_info
+			<set>
+				score = #{item.score,jdbcType=INTEGER},			
+			</set>
+			where uid = #{item.uid,jdbcType=INTEGER} AND pid= #{item.pid,jdbcType=INTEGER}
+		</foreach>
+
+	</update>
+  
+  
 </mapper>

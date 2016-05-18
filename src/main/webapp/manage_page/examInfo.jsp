@@ -6,10 +6,11 @@
 <head>
 <%@include file="/commons/csslibs.jspf"%>
 <%@include file="/commons/jslibs.jspf"%>
-<title>用户管理</title>
+
+<title>查看个人成绩</title>
 
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/manage_js/user.js"></script>
+	src="<%=request.getContextPath()%>/js/manage_js/examInfo.js"></script>
 </head>
 
 <body>
@@ -22,24 +23,13 @@
 			<tbody>
 				<tr>
 					<th scope="row">用户名</th>
-					<td><input type="text" name="query_user_username"
-						id="query_user_username" ></td>
+					<td><input type="text" name="query_examInfo_username"
+						id="query_examInfo_username" value="${currentUser.id }"></td>
 
 
-					<th scope="row">学号</th>
-					<td><input type="text" name="query_user_userno"
-						id="query_user_userno" class="easyui-combobox"></td>
-
-				</tr>
-				<tr>
-					<th scope="row">真实姓名</th>
-					<td><input type="text" name="query_user_realname"
-						id="query_user_realname"></td>
-
-
-					<th scope="row">邮箱</th>
-					<td><input type="text" name="query_user_email"
-						id="query_user_email" class="easyui-combobox"></td>
+					<th scope="row">试卷名</th>
+					<td><input type="text" name="query_examInfo_paperName"
+						id="query_examInfo_paperName" class="easyui-combobox"></td>
 
 				</tr>
 				<tr>
@@ -56,8 +46,8 @@
 		</table>
 	</div>
 	<div style="margin-top: 10px;">
-		<table id="user_dg" style="height: 800px"></table>
-		<div id="user_tb" class="datagrid-toolbar">
+		<table id="examInfo_dg" style="height: 800px"></table>
+		<div id="examInfo_tb" class="datagrid-toolbar">
 			<table>
 				<tr>
 					<td nowrap=true><a href="javascript:void(0)"
@@ -83,81 +73,53 @@
 			</table>
 		</div>
 	</div>
-	<div id="user_dlg" class="easyui-dialog"
+	<div id="examInfo_dlg" class="easyui-dialog"
 		style="width: 800px; height: 500px; padding: 10px 20px" closed="true"
-		buttons="user_dlg_buttons">
+		buttons="examInfo_dlg_buttons">
 		<div class="fti
-		tle">试题信息</div>
-		<form action="" id="user_fm" method="post" novalidate>
+		tle">考试信息</div>
+		<form action="" id="examInfo_fm" method="post" novalidate>
 			<div class="FormType">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
-					<tbody>
-				
-						<tr>
-							<th scope="row">学号</th>
-							<td><input type="text" name="userno"
-								class="easyui-validatebox" required="true"></td>
-						</tr>
+					<tbody>					
 						<tr>
 							<th scope="row">用户名</th>
-							<td><input type="text" name="username"
-								class="easyui-validatebox" required="true"></td>
+							<td><input type="text" name="uid" id="examInfo_fm_uid"
+								class="easyui-combobox" ></td>
 						</tr>
 						<tr>
-							<th scope="row">密码</th>
-							<td><input type="text" name="userpass"
-								class="easyui-validatebox" required="true"></td>
+							<th scope="row">试卷</th>
+							<td><input type="text" name="pid" id="examInfo_fm_pid"
+								class="easyui-combobox" ></td>
 						</tr>
 						<tr>
-							<th scope="row">照片</th>
-							<td><input type="text" name="photo"
-								class="easyui-validatebox" required="flase"></td>
+							<th scope="row">开始时间</th>
+							<td><input type="text" name="sdate"
+								class="easyui-datetimebox" ></td>
+						</tr>
+						<tr>
+							<th scope="row">结束时间</th>
+							<td><input type="text" name="edate"
+								class="easyui-datetimebox" ></td>
+						</tr>
+						<tr>
+							<th scope="row">ip</th>
+							<td><input type="text" name="ip" class="easyui-validatebox"
+								required="true"></td>
+						</tr>
+						<tr>
+							<th scope="row">成绩</th>
+							<td><textarea name="score" class="easyui-validatebox"
+									required="true"></textarea></td>
 						</tr>
 						<tr>
 							<th scope="row">状态</th>
 							<td><input type="text" name="status"
-								class="easyui-validatebox" required="true"></td>
-						</tr>
-						<tr>
-							<th scope="row">注册时间</th>
-							<td><textarea name="regdate" class="easyui-datetimebox"
-									required="true"></textarea></td>
-						</tr>
-						<tr>
-							<th scope="row">真实姓名</th>
-							<td><input type="text" name="realname"
-								class="easyui-validatebox">
-						</tr>
-
-						<tr>
-							<th scope="备注">电子邮件</th>
-							<td><input type="text" name="email"
 								class="easyui-validatebox"></td>
 						</tr>
 						<tr>
-							<th scope="备注">联系电话</th>
-							<td><input type="text" name="mobi"
-								class="easyui-validatebox"></td>
-						</tr>
-						<tr>
-							<th scope="备注">备注</th>
-							<td><input type="text" name="remark"
-								class="easyui-validatebox"></td>
-						</tr>
-						<tr>
-							<th scope="备注">用户组</th>
-							<td><input type="text" name="gid" class="easyui-validatebox"></td>
-						</tr>
-
-						<tr>
-							<th scope="备注">登陆次数</th>
-							<td><input type="text" name="logintimes"
-								class="easyui-validatebox"></td>
-						</tr>
-						<tr>
-							<th scope="备注">最后登陆时间</th>
-							<td><input type="text" name="lastlogin"
-								class="easyui-datetimebox"></td>
+							<th scope="备注">remark</th>
+							<td><input type="text" name="remark" class="input_full"></td>
 						</tr>
 
 
@@ -167,13 +129,12 @@
 
 				<!-- 隐藏域 -->
 				<input type="text" style="display: none" name="id">
-				
+				<!-- 获取提交时的日期 -->
 
 				<!-- 扩展区 -->
 			</div>
 		</form>
-		<div id="user_dlg_buttons" style="display: block"
-			class="dialog-button">
+		<div id="examInfo_dlg_buttons" style="display: block" class="dialog-button">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-ok"
 				onclick="saveObjectForm(moduleForm,moduleDialog)">保存</a> <a href="#"
 				class="easyui-linkbutton" iconCls="icon-cancel"

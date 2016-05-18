@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<script type="text/javascript">
-var baseUrl = "${pageContext.request.contextPath}"
-console.log(baseUrl)
-</script>
+second jsp
+${message}
 </body>
 </html>
