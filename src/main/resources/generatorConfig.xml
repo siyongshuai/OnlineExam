@@ -32,7 +32,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="oe_id" domainObjectName="QuestionID"
+		<table tableName="oe_admin" domainObjectName="Admin"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

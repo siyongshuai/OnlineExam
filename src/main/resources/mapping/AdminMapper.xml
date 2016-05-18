@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="haue.edu.cn.dao.AdminMapper">
+	<resultMap id="BaseResultMap" type="haue.edu.cn.model.Admin">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpass" property="userpass" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="roleid" property="roleid" jdbcType="INTEGER" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="mobi" property="mobi" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="logintimes" property="logintimes" jdbcType="INTEGER" />
+		<result column="lastlogin" property="lastlogin" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, username, userpass, status, roleid, realname, mobi, remark,
+		logintimes, lastlogin
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from oe_admin
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByLogin" resultMap="BaseResultMap"
+		parameterType="haue.edu.cn.model.Admin">
+		select
+		<include refid="Base_Column_List" />
+		from oe_admin
+		where
+		username = #{username,jdbcType=VARCHAR}
+		and userpass = #{userpass,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from oe_admin
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="haue.edu.cn.model.Admin">
+		insert into oe_admin (id, username, userpass,
+		status, roleid, realname,
+		mobi, remark, logintimes,
+		lastlogin)
+		values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		#{userpass,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}, #{realname,jdbcType=VARCHAR},
+		#{mobi,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{logintimes,jdbcType=INTEGER},
+		#{lastlogin,jdbcType=DATE})
+	</insert>
+	<insert id="insertSelective" parameterType="haue.edu.cn.model.Admin">
+		insert into oe_admin
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="userpass != null">
+				userpass,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="roleid != null">
+				roleid,
+			</if>
+			<if test="realname != null">
+				realname,
+			</if>
+			<if test="mobi != null">
+				mobi,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="logintimes != null">
+				logintimes,
+			</if>
+			<if test="lastlogin != null">
+				lastlogin,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpass != null">
+				#{userpass,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="roleid != null">
+				#{roleid,jdbcType=INTEGER},
+			</if>
+			<if test="realname != null">
+				#{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="mobi != null">
+				#{mobi,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="logintimes != null">
+				#{logintimes,jdbcType=INTEGER},
+			</if>
+			<if test="lastlogin != null">
+				#{lastlogin,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="haue.edu.cn.model.Admin">
+		update oe_admin
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpass != null">
+				userpass = #{userpass,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="roleid != null">
+				roleid = #{roleid,jdbcType=INTEGER},
+			</if>
+			<if test="realname != null">
+				realname = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="mobi != null">
+				mobi = #{mobi,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="logintimes != null">
+				logintimes = #{logintimes,jdbcType=INTEGER},
+			</if>
+			<if test="lastlogin != null">
+				lastlogin = #{lastlogin,jdbcType=DATE},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="haue.edu.cn.model.Admin">
+		update oe_admin
+		set username = #{username,jdbcType=VARCHAR},
+		userpass = #{userpass,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		roleid = #{roleid,jdbcType=INTEGER},
+		realname = #{realname,jdbcType=VARCHAR},
+		mobi = #{mobi,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		logintimes = #{logintimes,jdbcType=INTEGER},
+		lastlogin = #{lastlogin,jdbcType=DATE}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

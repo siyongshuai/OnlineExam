@@ -10,14 +10,11 @@
 </head>
 <body>
 	${message}
-	<h1 class="text-center bg-info">学生在线考试系统</h1>
+	<h1 class="text-center bg-info">学生在线考试系统管理员登陆界面</h1>
 	<div class="container">
 		<form:form id="loginForm" method="post" action="login.do"
-			modelAttribute="loginBean">
-			<div class="form-group">
-				<form:label path="userno">输入学号</form:label>
-				<form:input id="userno" name="userno" path="userno" class="form-control" />
-			</div>
+			commandName="adminBean">
+		
 			<br>
 			<div class="form-group">
 				<form:label path="username">输入用户名</form:label>
