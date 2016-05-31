@@ -10,7 +10,6 @@ import haue.edu.cn.dao.ExamDetailMapper;
 import haue.edu.cn.dao.ExamInfoMapper;
 import haue.edu.cn.model.ExamDetail;
 import haue.edu.cn.model.ExamInfo;
-import haue.edu.cn.model.ScoreCondition;
 
 @Service("scoreService")
 public class ScoreServiceImpl{
@@ -41,9 +40,11 @@ public class ScoreServiceImpl{
 		return examDetails;
 	}
 	
+//	保存计算后每题的成绩
 	public int savePerQuestionScore(){
 		return edDao.updateMore(computePerQuestionScore());
 	}
+//保存计算后用户的考卷成绩
 	public int saveUserExamScore(){
 		List<ExamInfo> examInfos = edDao.selectUserExamScore();
 		return eiDao.updateMore(examInfos);

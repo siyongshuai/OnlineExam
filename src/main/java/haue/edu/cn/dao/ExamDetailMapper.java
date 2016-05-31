@@ -4,7 +4,6 @@ import java.util.List;
 
 import haue.edu.cn.model.ExamDetail;
 import haue.edu.cn.model.ExamInfo;
-import haue.edu.cn.model.ScoreCondition;
 
 public interface ExamDetailMapper {
     int deleteByPrimaryKey(Integer id);

@@ -17,7 +17,7 @@
 					$
 							.ajax({
 								type : "POST",
-								url : "${pageContext.request.contextPath}/manage_page/ed/many.do",
+								url : "${pageContext.request.contextPath}/admin/ed/many.do",
 								dataType : "json",
 								contentType : "application/json;charset=UTF-8",
 								data : JSON.stringify([ {

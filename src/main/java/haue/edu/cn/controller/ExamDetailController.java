@@ -17,7 +17,7 @@ import haue.edu.cn.service.impl.ExamDetailServiceImpl;
 import haue.edu.cn.service.impl.ExamInfoServiceImpl;
 
 @Controller
-@RequestMapping("manage_page/ed")
+@RequestMapping("admin/ed")
 public class ExamDetailController implements CommonController<ExamDetail> {
 
 	AjaxResult ajaxResult = new AjaxResult();
@@ -26,6 +26,15 @@ public class ExamDetailController implements CommonController<ExamDetail> {
 	
 	@Autowired
 	private ExamInfoServiceImpl   eiService;
+	
+	
+	@Override
+	@RequestMapping("manage.do")
+	public String manage() {
+		// TODO Auto-generated method stub
+		return "admin/ed";
+	}
+	
 	
 	@Override
 	@RequestMapping("get.do")
@@ -120,5 +129,9 @@ public class ExamDetailController implements CommonController<ExamDetail> {
 	
 	return edService.query(condition);
 	}
+
+
+
+	
 
 }

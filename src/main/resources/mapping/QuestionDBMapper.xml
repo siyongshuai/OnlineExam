@@ -23,6 +23,16 @@
     <include refid="Base_Column_List" />
     from oe_question_db
   </select>
+      <select id="selectByCondition"  resultMap="BaseResultMap" parameterType="haue.edu.cn.model.QuestionDB">
+    select 
+    <include refid="Base_Column_List" />
+    from oe_question_db
+    <where>
+			<if test="dname != null">
+				and dname like '%' #{dname,jdbcType=VARCHAR} '%'
+			</if>
+	</where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from oe_question_db
     where id = #{id,jdbcType=INTEGER}

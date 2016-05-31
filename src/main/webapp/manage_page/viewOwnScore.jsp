@@ -22,12 +22,14 @@
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
+				
 					<th scope="row">用户id</th>
-					<td><input type="hidden" name="query_viewOwnScore_uid"
+					
+					<td><input type="text" name="query_viewOwnScore_uid"
 						id="query_viewOwnScore_uid"  value="${currentUser.id }"></td>
 
 
-					<th scope="row">试卷id</th>
+					<th scope="row">试卷名称</th>
 					<td><input type="text" name="query_viewOwnScore_pid" id="query_viewOwnScore_pid" class="easyui-combobox"></td>
 					
 				</tr>
@@ -44,11 +46,24 @@
 			</tbody>
 		</table>
 	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+		<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	<div style="margin-top: 10px;">
 		<table id="viewOwnScore_dg" style="height: 800px"></table>
 		<div id="viewOwnScore_tb" class="datagrid-toolbar">
 			<table>
 				<tr>
+				<!--  
 					<td nowrap=true><a href="javascript:void(0)"
 						class="easyui-linkbutton"
 						data-options="iconCls:'icon-add',plain:true"
@@ -63,6 +78,7 @@
 						data-options="iconCls:'icon-remove',plain:true"
 						onclick="deleteObjects(moduleDatagrid,moduleName)">删除</a></td>
 					<td><div class="datagrid-btn-separator"></div></td>
+					-->
 					<td nowrap=true><a href="javascript:void(0)"
 						class="easyui-linkbutton"
 						data-options="iconCls:'icon-search',plain:true"

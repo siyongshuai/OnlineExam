@@ -14,6 +14,8 @@ public interface QuestionDBMapper {
     QuestionDB selectByPrimaryKey(Integer id);
     
     List<QuestionDB> selectAll();
+    
+    List<QuestionDB> selectByCondition(QuestionDB condition);
 
     int updateByPrimaryKeySelective(QuestionDB record);
 

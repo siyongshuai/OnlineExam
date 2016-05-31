@@ -39,21 +39,17 @@
     <include refid="Base_Column_List" />
     from oe_exam_detail
   </select>
-    <select id="selectUserExamScore" resultMap="haue.edu.cn.dao.ExamInfoMapper.BaseResultMap"  >
-select sum(score) as score,uid ,pid from oe_exam_detail group by pid,uid ;
-  </select>
+  <!-- 按照用户id 和试卷id来计算考试成绩 -->
+	<select id="selectUserExamScore" resultMap="haue.edu.cn.dao.ExamInfoMapper.BaseResultMap">
+		select sum(score) as score,uid ,pid from oe_exam_detail group by
+		pid,uid ;
+	</select>
   <!-- 需要关联question表和question表来计算用户每题的得分 -->
 	<select id="selectUserAnswer" resultMap="BaseResultMap">
 		SELECT a.id,a.user_answer,a.uid,a.pid,a.qid,b.score as right_score,c.skey
 		from oe_exam_detail a,oe_paper_detail b,oe_question c
 		where  a.pid = b.pid AND a.qid=b.qid
 		AND a.qid=c.id
-
-	</select>
-		<select id="selectSumScore" resultMap="BaseResultMap">
-	
-		<include refid="Base_Column_List_Alias" />, 
-		
 
 	</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

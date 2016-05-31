@@ -251,4 +251,9 @@
 		lastlogin = #{lastlogin,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+	<update id="updatePassword" parameterType="haue.edu.cn.model.Student">
+		update oe_user
+		userpass = #{userpass,jdbcType=VARCHAR},
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

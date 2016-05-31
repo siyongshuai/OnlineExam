@@ -15,7 +15,7 @@ import haue.edu.cn.model.User;
 import haue.edu.cn.service.UserService;
 
 @Controller
-@RequestMapping(value = "manage_page")
+@RequestMapping(value = "admin")
 public class UserController {
 
 	@Autowired

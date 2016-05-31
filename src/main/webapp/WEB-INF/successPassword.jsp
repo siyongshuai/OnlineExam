@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录成功页面</title>
+<title>Insert title here</title>
 </head>
 <body>
- <center>Welcome ${currentUser.username}</center>
+更改密码成功
 </body>
 </html>

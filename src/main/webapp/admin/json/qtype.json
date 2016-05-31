@@ -1,0 +1,6 @@
+[
+{"qtype":"1","remark":"单选题"},
+{"qtype":"2","remark":"多选题"},
+{"qtype":"3","remark":"判断题"},
+{"qtype":"4","remark":"填空题"}
+]

@@ -14,6 +14,9 @@
 <body>
 
 	<h1 class="text-center bg-info">请选择试卷，准备进入考试</h1>
+	<h1 class="text-center bg-info">session里面当前的用户${currentUser.username}</h1>
+	<h1 class="text-center bg-info">session里面当前的用户id${currentUser.id}</h1>
+	<input type="hidden"  id="uid" name="uid" value="${currentUser.id}">
 	<div class="container">
 
 
@@ -28,17 +31,20 @@
 	<a id="startBtn" class=" btn btn-default btn-lg btn-danger" href="#" >开始考试</a>
 	</p>
 	<script type="text/javascript">
-	var pid = $('#pid').val()
-	var domain = "http://localhost:8080/"
-	var requestContext = "${pageContext.request.contextPath}"
-	var urlNameSpace = "/manage_page/paper/"
-	var url = domain+requestContext+urlNameSpace+"display.do?id="+pid
-	var start = $('#startBtn').attr("href",url)
-	$(function(){
-		console.log(pid)
+	
+	$('#startBtn').click(function(){
+		var uid = $('#uid').val()
+		var pid = $('#pid').val()
+		var domain = "http://localhost:8080"
+		var requestContext = "${pageContext.request.contextPath}"
+		var urlNameSpace = "/admin/paper/"
+		var url = domain+requestContext+urlNameSpace+"display.do?pid="+pid+"&uid="+uid
+		var start = $('#startBtn').attr("href",url)
+		console.log("uid------------"+uid)
+		console.log("pid------------"+pid)
 		console.log(url)
-		
 	})
+	
 	
 	
 	</script>

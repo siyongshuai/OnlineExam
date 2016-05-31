@@ -18,7 +18,7 @@
 
 							$.ajax({
 										type : "POST",
-										url : "${pageContext.request.contextPath}/manage_page/question/add.do",
+										url : "${pageContext.request.contextPath}/admin/question/add.do",
 										dataType : "json",
 										contentType : "application/json;charset=UTF-8",
 										data : JSON.stringify({										    

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.aspectj.org.eclipse.jdt.internal.compiler.util.Util.Displayable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,7 @@ import haue.edu.cn.model.ReturnResult;
 import haue.edu.cn.service.impl.QuestionServiceImpl;
 
 @Controller
-@RequestMapping("manage_page")
+@RequestMapping("admin/question")
 public class QuestionController {
 
 	@Autowired
@@ -29,18 +28,29 @@ public class QuestionController {
 	
 	public AjaxResult ajaxResult = new AjaxResult();
 	
-	@RequestMapping("/question/get.do")
+	@RequestMapping("manage.do")
+	public String manage(){
+		return "admin/question";
+	};
+	
+	
+	@RequestMapping("get.do")
 	@ResponseBody
 	public  List<QuestionWithBLOBs> getAll(Model model){
+		try {
+			List<QuestionWithBLOBs> questionList = questionService.get();
+			
+			model.addAttribute("questionList", questionList);
+			
+			return  questionService.get();
+		} catch (Exception e) {
+			System.out.println("获取问题失败");
+			return null;
+		}
 		
-		List<QuestionWithBLOBs> questionList = questionService.get();
-		
-		model.addAttribute("questionList", questionList);
-		
-		return  questionService.get();
 	}
 	
-	@RequestMapping("/question/random.do")
+	@RequestMapping("random.do")
 	@ResponseBody
 	public  List<QuestionID> getIds(HttpServletRequest request){
 		
@@ -50,7 +60,7 @@ public class QuestionController {
 		return  questionService.getIdByRandom(qtype, num);
 	}
 	
-	@RequestMapping("/question/random2.do")
+	@RequestMapping("random2.do")
 	@ResponseBody
 	public  List<Integer> getIdsByRandom(HttpServletRequest request){
 		
@@ -60,7 +70,7 @@ public class QuestionController {
 		return  questionService.getIdsByRandom(qtype, num);
 	}
 	
-	@RequestMapping("/question/random3.do")
+	@RequestMapping("random3.do")
 	@ResponseBody
 	public  List<Integer> getRandomIdsByCondition(HttpServletRequest request){
 		
@@ -71,7 +81,7 @@ public class QuestionController {
 		questionCondition.setQtype(1);
 		return  questionService.getRandomIdsByCondition(questionCondition);
 	}
-	@RequestMapping("/question/random4.do")
+	@RequestMapping("random4.do")
 	@ResponseBody
 	public  List<Integer> getRandomIds(HttpServletRequest request){
 		
@@ -83,7 +93,7 @@ public class QuestionController {
 		return  questionService.getRandomIds(paperCondition);
 	}
 	
-	@RequestMapping("/question/display.do")
+	@RequestMapping("display.do")
 	public String displayQuestions(Model model){
 		List<QuestionWithBLOBs> questionList = questionService.get();
 		
@@ -94,7 +104,7 @@ public class QuestionController {
 	
 	
 	
-	@RequestMapping("/question/one.do")
+	@RequestMapping("one.do")
 	@ResponseBody
 	public QuestionWithBLOBs getOne(Integer id,HttpServletRequest request){
 		id = Integer.parseInt(request.getParameter("id"));
@@ -103,7 +113,7 @@ public class QuestionController {
 	
 	
 	
-	@RequestMapping("/question/query.do")
+	@RequestMapping("query.do")
 	@ResponseBody
 	public  List<QuestionWithBLOBs> query(){
 		return  questionService.get();
@@ -112,7 +122,7 @@ public class QuestionController {
 	
 	
 	
-	@RequestMapping(value="/question/add.do")
+	@RequestMapping(value="add.do")
 	
 	public @ResponseBody ReturnResult add(@RequestBody QuestionWithBLOBs record){
 		
@@ -135,7 +145,7 @@ public class QuestionController {
 	}
 	
 	
-	@RequestMapping("/question/delete.do")
+	@RequestMapping("delete.do")
 	public @ResponseBody AjaxResult delete(@RequestBody QuestionWithBLOBs record){
 		try {
 			questionService.delete(record);
@@ -146,7 +156,7 @@ public class QuestionController {
 		return ajaxResult;
 	}
 	
-	@RequestMapping("/question/update.do")
+	@RequestMapping("update.do")
 	public @ResponseBody AjaxResult update(@RequestBody QuestionWithBLOBs record){
 		try {
 			questionService.update(record);

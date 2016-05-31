@@ -9,7 +9,7 @@
 <title>试卷管理</title>
 
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/manage_js/pd.js"></script>
+	src="<%=request.getContextPath()%>/js/admin/pd.js"></script>
 </head>
 
 <body>
@@ -22,8 +22,8 @@
 			<tbody>
 				<tr>
 					<th scope="row">试卷名称</th>
-					<td><input type="text" name="query_pd_type"
-						id="query_pd_type" class="easyui-combobox"></td>
+					<td><input type="text" name="query_pd_papername"
+						id="query_pd_papername" class="easyui-combobox"></td>
 
 
 					<th scope="row">所属题库</th>
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 	<div id="pd_dlg" class="easyui-dialog"
-		style="width: 800px; height: 500px; padding: 10px 20px" closed="true"
+		style="width: 500px; height: 300px; padding: 10px 20px" closed="true"
 		buttons="pd_dlg_buttons">
 		<div class="ftitle">试题信息</div>
 		<form action="" id="pd_fm" method="post" novalidate>

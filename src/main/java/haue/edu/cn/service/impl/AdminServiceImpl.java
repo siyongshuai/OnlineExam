@@ -9,7 +9,7 @@ import haue.edu.cn.dao.AdminMapper;
 import haue.edu.cn.model.Admin;
 import haue.edu.cn.service.CommonService;
 
-@Service("adminLogin")
+@Service("adminService")
 public class AdminServiceImpl implements CommonService<Admin> {
 
 	@Autowired
@@ -47,8 +47,7 @@ public class AdminServiceImpl implements CommonService<Admin> {
 
 	@Override
 	public int update(Admin record) {
-		// TODO Auto-generated method stub
-		return 0;
+		return adminDao.updateByPrimaryKey(record);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("manage_page")
+@RequestMapping("admin/mvc")
 public class SpringMVCTest {
 
 	@RequestMapping("jump.do")

@@ -3,6 +3,7 @@
  */
 var baseUrl = "http://localhost:8080/OnlineExam"
 var pid = $('input[name=paperId]').val()
+var uid = $('input[name=uid]').val()
 function endExam() {
 	var examlist = [];
 	$("input:radio:checked").each(function(index, domEle) {
@@ -10,12 +11,13 @@ function endExam() {
 
 		var examdetail = {}
 		examdetail.userAnswer = $(domEle).val()
-		examdetail.uid = 1
+		examdetail.uid = uid
 		examdetail.pid = pid
 		examdetail.qid = $(domEle).attr("name")
 		examdetail.qtype = 1
 		console.log(examdetail)
 		console.log("取出的paperId------------"+examdetail.pid)
+		console.log("取出的uid------------"+examdetail.uid)
 		examlist.push(examdetail);
 
 	})
@@ -23,15 +25,15 @@ function endExam() {
 	console.log(examlist)
 	$.ajax({
 		type : "POST",
-		url : baseUrl + "/manage_page/ed/many.do",
+		url : baseUrl + "/admin/ed/many.do",
 		dataType : "json",
 		contentType : "application/json;charset=UTF-8",
 		data : JSON.stringify(examlist),
 		success : function(data) {
-
 			alert("操作成功")
-			// console.log(JSON.stringify(saveDataAry))  
-
+//			进行页面跳转：
+			window.location.href= baseUrl+"/admin/score/viewScore.do"
+			
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log(XMLHttpRequest.status);
@@ -43,7 +45,7 @@ function endExam() {
 	
 }
 
-
+//格式化当前时间
 function getNowFormatDate() {
 	    var date = new Date();
 	    var seperator1 = "-";
@@ -79,7 +81,7 @@ $(document).ready(function() {
 	
 	 var twoHours = new Date().getTime() + 2*60*60*1000;
 
-	  
+//	  倒计时程序
 	$('#clock').countdown(twoHours)
 	.on('update.countdown',function(event){
 		var $this = $(this);

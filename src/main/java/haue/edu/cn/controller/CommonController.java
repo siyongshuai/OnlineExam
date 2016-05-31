@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import haue.edu.cn.model.AjaxResult;
 import haue.edu.cn.model.ExamDetail;
 
-@Controller
-@RequestMapping("manage_page/paper")
 public interface CommonController<T> {
 
 
@@ -20,6 +18,8 @@ public interface CommonController<T> {
 	public List<T> get();
 
 
+
+	
 	public T getOne(HttpServletRequest request);
 
 	
@@ -34,6 +34,9 @@ public interface CommonController<T> {
 	
 	
 	public List<T> query(T condition);
+
+
+	String manage();
 
 	
 

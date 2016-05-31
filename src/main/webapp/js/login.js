@@ -4,7 +4,7 @@
 // 定义登录函数
 
 function login_fm(){
-	var url = "http://localhost:8080/OnlineExam/manage_page/student/login6.do"
+	var url = "http://localhost:8080/OnlineExam/admin/student/login6.do"
 	var student = {}
 	student.userno = $('#userno').val()
 	student.userpass = $('#userpass').val()
@@ -32,7 +32,7 @@ function user_login(){
 	console.log(student.username)
 	$.ajax({
 		type : "POST",
-		url : "http://localhost:8080/OnlineExam/manage_page/student/login7.do",
+		url : "http://localhost:8080/OnlineExam/admin/student/login7.do",
 //		dataType : "json",
 		contentType : "application/json;charset=UTF-8",
 		data : JSON.stringify(student),

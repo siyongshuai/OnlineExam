@@ -59,4 +59,8 @@ public class StudentServiceImpl implements CommonService<Student>{
 		// TODO Auto-generated method stub
 		return studentDao.selectByLogin(student);
 	}
+	public int updatePassword(Student record){
+		return studentDao.updateByPrimaryKey(record);
+	}
+	
 }

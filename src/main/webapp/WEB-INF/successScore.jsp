@@ -7,21 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${stu2.username}
-${stu2.userno}
-${stu2.userpass}
-<br>
-<br>
-
-
-<%
-java.util.Enumeration<String> reqEnum = request.getAttributeNames();
-while (reqEnum.hasMoreElements()) {
-String s = reqEnum.nextElement();
-out.print(s);
-out.println("==" + request.getAttribute(s));};
-%><br />
-
-
+自动阅卷已经完成
 </body>
 </html>

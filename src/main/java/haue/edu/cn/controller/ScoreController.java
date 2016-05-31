@@ -14,20 +14,18 @@ import haue.edu.cn.model.AjaxResult;
 import haue.edu.cn.model.ExamDetail;
 import haue.edu.cn.model.ExamInfo;
 import haue.edu.cn.model.ScoreCondition;
-import haue.edu.cn.service.impl.ExamDetailServiceImpl;
 import haue.edu.cn.service.impl.ExamInfoServiceImpl;
 import haue.edu.cn.service.impl.ScoreServiceImpl;
 
 @Controller
-@RequestMapping("manage_page/score")
+@RequestMapping("admin/score")
 public class ScoreController implements CommonController<ExamInfo> {
 
 	AjaxResult ajaxResult= new AjaxResult();
 	@Autowired
 	private ScoreServiceImpl scoreService;
 	
-	@Autowired
-	private ExamDetailServiceImpl edService;
+
 
 	@Autowired
 	private ExamInfoServiceImpl eiService;
@@ -36,9 +34,15 @@ public class ScoreController implements CommonController<ExamInfo> {
 	@RequestMapping("get.do")
 	@ResponseBody
 	public List<ExamInfo> get() {
-		// TODO Auto-generated method stub
-		ScoreCondition scoreCondition = new ScoreCondition();
-		return eiService.getUserScore(scoreCondition);
+		try {
+			ScoreCondition scoreCondition = new ScoreCondition();
+			return eiService.getUserScore(scoreCondition);
+			
+		} catch (Exception e) {
+			System.out.println("获取用户成绩失败");
+			return null;
+		}
+		
 	}
 
 	
@@ -69,19 +73,36 @@ public class ScoreController implements CommonController<ExamInfo> {
 		System.out.println("**************************************");
 		return ajaxResult;
 	}
+	
+//	先计算每道题的得分，然后更新每道题的得分，接着计算用户考试的总成绩，并批量更新到examinfo表里
+	@RequestMapping("generateScore.do")
+	public String generateAndSaveScore(){
+		try {
+			scoreService.savePerQuestionScore();
+			scoreService.saveUserExamScore();
+			return "successScore";
+		} catch (Exception e) {
+			return "failScore";
+		}
+	
+}
 //学生查看自己的成绩
+	@RequestMapping("viewScore.do")
+	public String viewScore(){
+		return "viewOwnScore";
+	}
 	
 	@RequestMapping("query.do")
 	@ResponseBody
 	public List<ExamInfo> viewOwnScore(@RequestBody ScoreCondition scoreCondition){
-		
-		return eiService.getUserScore(scoreCondition);
+		try {
+			return eiService.getUserScore(scoreCondition);
+		} catch (Exception e) {
+			System.out.println("查询用户成绩失败");
+			return null;
+		}
+	
 	}
-	
-
-
-	
-
 	
 	@Override
 	public ExamInfo getOne(HttpServletRequest request) {
@@ -111,6 +132,13 @@ public class ScoreController implements CommonController<ExamInfo> {
 	public List<ExamInfo> query(ExamInfo condition) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	@RequestMapping("manage.do")
+	public String manage() {
+		return "admin/score";
 	}
 
 

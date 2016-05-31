@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 <%@include file="/commons/csslibs.jspf"%>
 <%@include file="/commons/jslibs.jspf"%>
-<title>首页</title>
+<title>学生用户首页</title>
 
 <style type="text/css">
 
@@ -20,15 +20,15 @@
 
 		<!-- 北 -->
 		<div data-options="region:'north'"
-			style="height: 60px; background-color: #355EBA">
+			style="height: 100px; background-color: #355EBA">
 			<input type="text" id="username" hidden="true" value="">
-			<div id="logo"></div>
+			<div id="logo" style="width: 350px"></div>
 			<div
 				style="margin-left: 400; font-size: 20px; line-height: 50px; color: #fff;">
 				学生在线考试系统
 				<div
 					style="font-size: 10px; float: right; width: 100px; color: #fff">
-					<a href="#" onclick="addTab('用户密码修改',testUrl+'/yh/redirect2.do')"
+					<a href="#" onclick="addTab('用户密码修改',testUrl+'/student/password.do')"
 						style="text-decoration: none; color: #fff">【修改密码】</a>
 				</div>
 				<div
@@ -39,6 +39,7 @@
 				<div
 					style="font-size: 10px; float: right; width: 200px; text-align: right; color: #fff">
 					<span>欢迎您${currentUser.username}：&nbsp;&nbsp;</span>
+					<span>欢迎您${currentUser.id}：&nbsp;&nbsp;</span>
 				</div>
 			</div>
 
@@ -51,16 +52,16 @@
 				data-options="fit:true,border:false,">
 				<div title="学生模块">
 					<ul>
-						<li><a onclick="addTab('在线考试',testUrl+'/paper/redirect.do')">
+						<li><a onclick="addTab('在线考试',testUrl+'/paper/select.do')">
 								<span>在线考试</span>
 						</a></li>
-						<li><a onclick="查看成绩('查看成绩',testUrl+'/result/redirect.do')">
-								<span>平台服务器管理</span>
+						<li><a onclick="addTab('查看成绩',testUrl+'/score/viewScore.do')">
+								<span>查看成绩</span>
 						</a></li>
 						<li><a
-							onclick="addTab('查看个人信息',testUrl+'/student/redirect.do')"> <span>查看个人信息</span>
+							onclick="addTab('查看个人信息',testUrl+'/student/info.do')"> <span>查看个人信息</span>
 						</a></li>
-						<li><a onclick="addTab('修改密码',testUrl+'/student/redirect.do')">
+						<li><a onclick="addTab('修改密码',testUrl+'/student/password.do')">
 								<span>修改密码</span>
 						</a></li>
 
@@ -97,9 +98,9 @@
 			<table
 				style="font-family: Verdana, Arial; text-align: center; padding-left: 100px">
 				<tr>
-					<td style="width: 33%">恒生运维网站</td>
-					<td style="width: 45%">CopyRight© 2010-2014 恒生电子股份有限公司</td>
-					<td style="padding-left: 80px">技术支持:0571-26698527</td>
+					<td style="width: 33%">河南工程学院在线考试系统</td>
+					<td style="width: 45%">CopyRight© 吴婷</td>
+					<td style="padding-left: 80px">联系方式:17051063263</td>
 				</tr>
 			</table>
 
@@ -108,7 +109,8 @@
 	</div>
 
 	<script>
-		var testUrl = 'http://localhost:8080/OnlineExam/manage_page'
+		var baseUrl = 'http://localhost:8080/OnlineExam'
+		var testUrl = 'http://localhost:8080/OnlineExam/admin'
 		function addTab(title, url) {
 			if ($('#tabsID').tabs('exists', title)) {
 				$('#tabsID').tabs('select', title);
@@ -126,13 +128,12 @@
 		function logout() {
 			$
 					.ajax({
-						type : "post",
-						url : "http://120.27.119.148:8080/ACM/manage_page/logout.do",
-						dataType : "json",
+						type : "get",
+						url : baseUrl+"/student/logout.do",
 						contentType : "application/json;charset=UTF-8",
 						success : function() {
 							alert("安全退出成功！");
-							window.location.href = 'http://120.27.119.148:8080/ACM/manage_page/login.html';
+							window.location.href = baseUrl+"/student/login.do";
 						}
 					})
 		}
@@ -168,12 +169,6 @@
 			});
 		});
 	</script>
-	<script type="text/javascript">
-		var userName = $('#username').val();
-		//alert(userName);
-		var st = {
-			"zhm" : userName
-		}
-	</script>
+
 </body>
 </html>

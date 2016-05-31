@@ -9,7 +9,7 @@
 <title>用户管理</title>
 
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/manage_js/user.js"></script>
+	src="<%=request.getContextPath()%>/js/manage_js/student.js"></script>
 </head>
 
 <body>

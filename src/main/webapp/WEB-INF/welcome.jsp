@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>登录成功页面</title>
 </head>
 <body>
-second jsp
-${message}
+ <center>消息 ${message}</center>
 </body>
 </html>

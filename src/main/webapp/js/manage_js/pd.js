@@ -13,6 +13,7 @@ var DatagridOptions = {
 		field : 'id',
 		title : '试卷详情id',
 		width : 100,
+		hidden:true,
 		align : 'left',		
 	}, {
 		field : 'pid',
@@ -31,17 +32,20 @@ var DatagridOptions = {
 		field : 'qid',
 		title : '问题id',
 		width : 200,
+		hidden:true,
 		align : 'center',
 		
 	}, {
 		field : 'score',
 		title : '分数',
+		hidden:true,
 		width : 200,
 		align : 'center',		
 	}, {
 		field : 'orderid',
 		title : '排序规则',
 		width : 200,
+		hidden:true,
 		align : 'center',
 		
 	}

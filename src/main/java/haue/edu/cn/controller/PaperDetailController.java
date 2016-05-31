@@ -18,7 +18,7 @@ import haue.edu.cn.model.PaperDetail;
 import haue.edu.cn.service.impl.PaperDetailServiceImpl;
 
 @Controller
-@RequestMapping("manage_page/pd")
+@RequestMapping("admin/pd")
 public class PaperDetailController implements CommonController<PaperDetail> {
 	
 	AjaxResult ajaxResult = new AjaxResult();
@@ -37,10 +37,15 @@ public class PaperDetailController implements CommonController<PaperDetail> {
 	
 	@RequestMapping("display.do")
 	public String dispaly(HttpServletRequest request,HttpServletResponse response,Model model) {
-		int pid = Integer.parseInt(request.getParameter("id"));
-		List<PaperDetail> questionList = paperDetailService.getQuestions(pid);
-		model.addAttribute("questionList", questionList);
-		return "display";
+		try {
+			int pid = Integer.parseInt(request.getParameter("id"));
+			List<PaperDetail> questionList = paperDetailService.getQuestions(pid);
+			model.addAttribute("questionList", questionList);
+			return "display";
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -57,17 +62,18 @@ public class PaperDetailController implements CommonController<PaperDetail> {
 	@ResponseBody
 	public AjaxResult add(@RequestBody PaperDetail record) {
 		// TODO Auto-generated method stub
-		if(paperDetailService.add(record)>0){
-			return  ajaxResult;
-		}else {
-			return null;
-		}
+	
+			if(paperDetailService.add(record)>0){
+				return  ajaxResult;
+			}else {
+				return null;
+			}
+				
 	}
 
 	@RequestMapping("add.do")
 	@ResponseBody
 	public AjaxResult generate(@RequestBody PaperCondition paperCondition ) {
-		// TODO Auto-generated method stub
 		if(paperDetailService.addMany(paperCondition)>0){
 			return  ajaxResult;
 		}else {
@@ -92,30 +98,48 @@ public class PaperDetailController implements CommonController<PaperDetail> {
 	@RequestMapping("delete.do")
 	@ResponseBody
 	public AjaxResult delete(@RequestBody PaperDetail record) {
-	if (paperDetailService.delete(record) > 0) {
-		return ajaxResult;
-	} else {
-		return null;
+	try {
+		if (paperDetailService.delete(record) > 0) {
+			return ajaxResult;
+		} else {
+			return null;
+		}
+	} catch (Exception e) {
+		System.out.println("删除paperDetail异常");
+		return new AjaxResult();
 	}
+	
 	}
 
 	@Override
 	@RequestMapping("update.do")
 	@ResponseBody
 	public AjaxResult update(@RequestBody PaperDetail record) {
-		if (paperDetailService.update(record) > 0) {
-			return ajaxResult;
-		} else {
+		try {
+			if (paperDetailService.update(record) > 0) {
+				return ajaxResult;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("更新paperDetail异常");
 			return null;
 		}
+		
+		
 	}
 
 	@Override
 	@RequestMapping("query.do")
 	@ResponseBody
 	public List<PaperDetail> query(PaperDetail condition) {
-		// TODO Auto-generated method stub
 		return paperDetailService.get();
+	}
+
+	@Override
+	@RequestMapping("manage.do")
+	public String manage() {
+		return "admin/pd";
 	}
 
 }

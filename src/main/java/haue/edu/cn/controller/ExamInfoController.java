@@ -15,7 +15,7 @@ import haue.edu.cn.model.ExamInfo;
 import haue.edu.cn.service.impl.ExamInfoServiceImpl;
 
 @Controller
-@RequestMapping("manage_page/ei")
+@RequestMapping("admin/ei")
 public class ExamInfoController implements CommonController<ExamInfo> {
 
 	@Autowired
@@ -80,6 +80,13 @@ public class ExamInfoController implements CommonController<ExamInfo> {
 	@ResponseBody
 	public List<ExamInfo> query(@RequestBody ExamInfo condition) {
 		return eiService.query(condition);
+	}
+
+	@Override
+	@RequestMapping("manage.do")
+	public String manage () {
+		// TODO Auto-generated method stub
+		return "admin/examInfo";
 	}
 
 }

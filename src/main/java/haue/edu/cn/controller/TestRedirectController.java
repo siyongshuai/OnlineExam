@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
-@RequestMapping("manage_page/test")
+@RequestMapping("admin/test")
 public class TestRedirectController {
 
 	
@@ -16,7 +16,6 @@ public class TestRedirectController {
 	@RequestMapping("first.do")
 	public ModelAndView fisrtJsp(){
 
-//		return new ModelAndView("redirect:/manage_page/test/second.do");
 		return new ModelAndView("redirect:second.do");
 	}
 	@RequestMapping("second.do")

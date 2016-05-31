@@ -18,6 +18,19 @@ public class QuestionDBServiceImpl {
 		return questionDBDao.selectAll();
 	}
 	
+	public int add(QuestionDB record){
+		return questionDBDao.insert(record);
+	}
 	
+	public int delete(QuestionDB record){
+		return questionDBDao.deleteByPrimaryKey(record.getId());
+	}
 	
+	public int update(QuestionDB record){
+		return questionDBDao.updateByPrimaryKey(record);
+	}
+	
+	public List<QuestionDB> query(QuestionDB condition){
+		return questionDBDao.selectByCondition(condition);
+	}
 }
